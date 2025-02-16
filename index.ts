@@ -33,6 +33,6 @@ program
     });
 
 
-//program.parse(process.argv);
+program.parse(process.argv);
 
 export default program;
