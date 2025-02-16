@@ -26,6 +26,8 @@ export const writeComponentFile = (
   className: string,
   props?: string[]
 ) => {
+    
+    
   try {
     const componentCode = generateComponentCode(type, name, className, props);
     const dir = path.join(process.cwd(), "./src/components");

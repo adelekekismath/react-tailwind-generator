@@ -10,7 +10,10 @@ const promptUser = async () => {
         { type: "input", name: "className", message: "TailwindCSS class name ?" },
         { type: "input", name: "props", message: "Props (comma separated or leave empty): ?" }
     ]);
+
+
     writeComponentFile(answers.type, answers.name, answers.className, answers.props.split(","));
+    
 };
 
 program
@@ -30,4 +33,6 @@ program
     });
 
 
-program.parse(process.argv);
+//program.parse(process.argv);
+
+export default program;
