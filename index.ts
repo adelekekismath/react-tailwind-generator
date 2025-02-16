@@ -1,6 +1,6 @@
 import { program } from "commander";
 import inquirer from "inquirer";
-import { writeComponentFile } from "./generator";
+import { writeComponentFile } from "./src/generator";
 
 const promptUser = async () => {
 
