@@ -11,11 +11,13 @@
   "description": "",
   "devDependencies": {
     "@types/node": "^22.13.4",
+    "@types/react": "^19.0.8",
     "ts-node": "^10.9.2",
     "typescript": "^5.7.3"
   },
   "dependencies": {
     "commander": "^13.1.0",
-    "inquirer": "^12.4.1"
+    "inquirer": "^12.4.1",
+    "react": "^19.0.0"
   }
 }

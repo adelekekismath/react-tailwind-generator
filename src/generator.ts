@@ -1,150 +1,45 @@
 import fs from "fs";
 import path from "path";
-
-const componentTemplates: Record<string, (name: string, className: string, props?: string[]) => string> = {
-    button: (name, className, props = []) => {
-        const propsDeclaration = props.map((prop) => `${prop}?: any`).join("; ");
-        const propsUsage = props.map((prop) => `{${prop} && <span>{${prop}}</span>}`).join("");
-
-        return `
-            import React from "react";
-
-            export const ${name} = ({ children, onClick, ${props.join(", ")} }: { 
-            children: React.ReactNode; 
-            onClick?: () => void; 
-            ${propsDeclaration} 
-            }) => {
-            return (
-                <button className="${className}" onClick={onClick}>
-                {children}
-                ${propsUsage}
-                </button>
-            );
-            };
-        `;
-    },
-
-    card: (name, className, props = []) => {
-        const propsDeclaration = props.map((prop) => `${prop}?: any`).join("; ");
-        const propsUsage = props.map((prop) => `{${prop} && <span>{${prop}}</span>}`).join("");
-
-        return `
-            import React from "react";
-
-            export const ${name} = ({ children, ${props.join(", ")} }: { 
-            children: React.ReactNode; 
-            ${propsDeclaration} 
-            }) => {
-            return (
-                <div className="${className} p-4 shadow-md rounded-lg">
-                {children}
-                ${propsUsage}
-                </div>
-            );
-            };
-        `;
-    },
-
-    modal: (name, className, props = []) => {
-        const propsDeclaration = [
-            "isOpen: boolean",
-            ...props.map((prop) => `${prop}?: any`),
-        ].join("; ");
-        const propsUsage = props.map((prop) => `{${prop} && <span>{${prop}}</span>}`).join("");
-
-        return `
-            import React from "react";
-
-            export const ${name} = ({ children, isOpen, ${props.join(", ")} }: { 
-            children: React.ReactNode; 
-            ${propsDeclaration} 
-            }) => {
-            if (!isOpen) return null;
-            return (
-                <div className="fixed inset-0 flex items-center justify-center ${className}">
-                <div className="bg-white p-6 rounded-lg shadow-lg">
-                    {children}
-                    ${propsUsage}
-                </div>
-                </div>
-            );
-            };
-        `;
-    },
-
-    navbar: (name, className, props = []) => {
-        const propsDeclaration = props.map((prop) => `${prop}?: any`).join("; ");
-        const propsUsage = props.map((prop) => `{${prop} && <span>{${prop}}</span>}`).join("");
-
-        return `
-            import React from "react";
-
-            export const ${name} = ({ children, ${props.join(", ")} }: { 
-            children: React.ReactNode; 
-            ${propsDeclaration} 
-            }) => {
-            return (
-                <nav className="${className} bg-gray-800 text-white p-4">
-                {children}
-                ${propsUsage}
-                </nav>
-            );
-            };
-        `;
-    },
-
-    input: (name, className, props = []) => {
-        const propsDeclaration = [
-            "placeholder: string",
-            ...props.map((prop) => `${prop}?: any`),
-        ].join("; ");
-        const propsUsage = props.map((prop) => `{${prop} && <span>{${prop}}</span>}`).join("");
-
-        return `
-            import React from "react";
-
-            export const ${name} = ({ placeholder, ${props.join(", ")} }: { 
-            placeholder: string; 
-            ${propsDeclaration} 
-            }) => {
-            return (
-                <input className="${className}" placeholder={placeholder} />
-            );
-            };
-        `;
-    },
-};
+import { componentTemplates } from "./componentTemplates";
 
 /**
- * Génère le code d'un composant React/Tailwind sous forme de string.
+ * Generates the code for a React/Tailwind component as a string.
  */
 export const generateComponentCode = (
-    type: string,
-    name: string,
-    className: string
+  type: string,
+  name: string,
+  className: string,
+  props?: string[]
 ) => {
-    return componentTemplates[type](name, className);
+  if (!componentTemplates[type]) {
+    throw new Error(`Unknown component type: ${type}`);
+  }
+  return componentTemplates[type].generate(name, className, props);
 };
 
 /**
- * Écrit le composant dans un fichier.
+ * Writes the component to a file.
  */
 export const writeComponentFile = (
-    type: string,
-    name: string,
-    className: string,
-    props?: string[]
+  type: string,
+  name: string,
+  className: string,
+  props?: string[]
 ) => {
-    if (!componentTemplates[type]) {
-        console.error(`❌ Type de composant inconnu : ${type}`);
-        return;
-    }
-
+  try {
+    const componentCode = generateComponentCode(type, name, className, props);
     const dir = path.join(process.cwd(), "./src/components");
     if (!fs.existsSync(dir)) {
-        fs.mkdirSync(dir);
+      fs.mkdirSync(dir);
     }
-    const filePath = path.join(dir, `${name}.tsx`);
-    fs.writeFileSync(filePath, componentTemplates[type](name, className, props));
-    console.log(`✅ Composant ${name} de type ${type} généré dans ${filePath}`);
+    const filePath = path.join(dir, `${name}.jsx`);
+    fs.writeFileSync(filePath, componentCode);
+    console.log(`✅ Component ${name} of type ${type} generated at ${filePath}`);
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error(`❌ Error generating component: ${error.message}`);
+    } else {
+      console.error(`❌ Error generating component: ${error}`);
+    }
+  }
 };

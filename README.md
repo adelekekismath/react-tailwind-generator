@@ -3,7 +3,8 @@
 🚀 Un générateur de composants React stylisés avec Tailwind CSS.  
 Gagne du temps en créant automatiquement des boutons, cartes, modales et autres, avec des styles et des props personnalisables.
 
----
+<br>
+<br>
 
 ## 📦 Installation  
 
@@ -15,7 +16,8 @@ ou
 yarn global add react-tailwind-generator
 ```
 
-
+<br>
+<br>
 
 
 ## 🚀 Utilisation
@@ -32,7 +34,8 @@ npx react-tailwind-generator generate button MyButton "px-4 py-2 bg-blue-500 tex
  - icon
  - disabled
 
-
+<br>
+<br>
 
 
  ### 2️⃣ Mode interactif (plus simple 📌)
@@ -44,7 +47,8 @@ npx react-tailwind-generator interactive
 
 🔹 L'outil te guidera pour configurer ton composant sans avoir à écrire une longue commande.
 
-
+<br>
+<br>
 
 ## 🎨 Types de composants disponibles
 
@@ -57,7 +61,8 @@ npx react-tailwind-generator interactive
 | input             | Champ de saisie avec un placeholder |
 
 
-
+<br>
+<br>
 
 ## 🛠 Exemples
 ### 1️⃣ Générer un bouton personnalisé
@@ -89,7 +94,8 @@ export const SubmitButton = ({ children, onClick, icon, disabled }: {
 ```
 
 
-
+<br>
+<br>
 
 
 ### 2️⃣ Générer une carte avec un titre dynamique
@@ -116,7 +122,8 @@ export const InfoCard = ({ children, title }: {
 };
 
 ```
-
+<br>
+<br>
 
 
 
@@ -127,7 +134,8 @@ export const InfoCard = ({ children, title }: {
 🔹 Génération de tests Jest pour vérifier les composants
 
 
-
+<br>
+<br>
 
 ## 👨‍💻 Contribuer
 Si tu veux améliorer ce projet :
@@ -143,12 +151,14 @@ npm install
 ```
 
 
-
+<br>
+<br>
 
 Fait tes modifications et crée une PR 🚀
 
 
-
+<br>
+<br>
 ## 📜 Licence
 MIT © 2025 - Kismath Adeleke
 
