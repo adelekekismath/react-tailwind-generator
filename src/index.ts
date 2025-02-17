@@ -1,6 +1,10 @@
+#!/usr/bin/env node
+
+
 import { program } from "commander";
 import inquirer from "inquirer";
-import { writeComponentFile } from "./src/generator";
+import { writeComponentFile } from "./generator";
+import { ensureTailwindInstalled } from "./utils/TailwindVerification";
 
 const promptUser = async () => {
 
@@ -32,7 +36,18 @@ program
         writeComponentFile(type, name, className, props.split(","));
     });
 
+program
+    .option("-h, --help", "Display help for command")
+    .action(() => {
+        program.help();
+    });
 
-program.parse(process.argv);
+ 
+async function main() {
+    await ensureTailwindInstalled();
+    program.parse(process.argv);
+}
+
+main();
 
 export default program;

@@ -26,7 +26,39 @@ yarn global add react-tailwind-generator
 You can generate a component via command line:
 
 ```sh
-npx react-tailwind-generator generate button MyButton "px-4 py-2 bg-blue-500 text-white" icon disabled
+npx react-tailwind-generator generate  <ComponentName> <ComponentType> -c "<TailwindClasses>" -p "<Prop1> ,<Prop2>, ..."
+```
+
+🔹 ComponentName: The name of the component you want to create. Ex: CloseButton, InfoCard, etc. <br>
+🔹 ComponentType: The type of component you want to create. <br>
+
+ 🎨 Available component types are:
+
+| Component type | Description |
+|----------------|-------------|
+| button         | Clickable button with onClick |
+| card           | Styled container to display content |
+| modal          | Modal window with display management |
+| navbar         | Navigation bar with content |
+| footer         | Footer with content |
+| alert         | Alert message with a close button |
+| badge          | Badge with text or number |
+| dropdown       | Dropdown menu with options |
+| input          | Input field with a placeholder |
+<br>
+
+🔹 TailwindClasses: The Tailwind CSS classes you want to apply to the component. Ex: "px-4 py-2 bg-blue-500 text-white" <br>
+🔹 Props: The props you want to add to the component. Ex: "onClick, icon, disabled" <br>
+
+  
+
+
+
+
+Ex: You can generate a button component via command line:
+
+```sh
+npx react-tailwind-generator generate  MyButton button "px-4 py-2 bg-blue-500 text-white" icon disabled
 ```
 
 👉 This creates a MyButton.tsx file in ./src/components/ with these props:
@@ -48,18 +80,7 @@ npx react-tailwind-generator interactive
 
 🔹 The tool will guide you to configure your component without having to write a long command.
 
-<br>
-<br>
 
-## 🎨 Available component types
-
-| Component type | Description |
-|----------------|-------------|
-| button         | Clickable button with onClick |
-| card           | Styled container to display content |
-| modal          | Modal window with display management |
-| navbar         | Navigation bar with content |
-| input          | Input field with a placeholder |
 
 
 <br>
@@ -69,7 +90,7 @@ npx react-tailwind-generator interactive
 ### 1️⃣ Generate a custom button
 
 ```sh
-npx react-tailwind-generator generate button SubmitButton "px-4 py-2 bg-green-500 text-white" icon disabled
+npx react-tailwind-generator generate  SubmitButton button -c "px-4 py-2 bg-green-500 text-white" -p "disabled"
 ```
 
 📌 Result in ./src/components/SubmitButton.tsx:
@@ -77,7 +98,7 @@ npx react-tailwind-generator generate button SubmitButton "px-4 py-2 bg-green-50
 ```tsx
 import React from "react";
 
-export const SubmitButton = ({ children, onClick, icon, disabled }: { 
+export const SubmitButton = ({ children, onClick, disabled }: { 
     children: React.ReactNode; 
     onClick?: () => void; 
     icon?: any; 
@@ -85,7 +106,6 @@ export const SubmitButton = ({ children, onClick, icon, disabled }: {
 }) => {
     return (
         <button className="px-4 py-2 bg-green-500 text-white" onClick={onClick} disabled={disabled}>
-            {icon && <span>{icon}</span>}
             {children}
         </button>
     );
@@ -101,7 +121,7 @@ export const SubmitButton = ({ children, onClick, icon, disabled }: {
 ### 2️⃣ Generate a card with a dynamic title
 
 ```sh
-npx react-tailwind-generator generate card InfoCard "p-4 shadow-md rounded-lg" title
+npx react-tailwind-generator generate  InfoCard card -c "p-4 shadow-md rounded-lg" -p "title"
 ```
 
 📌 Result in ./src/components/InfoCard.tsx:
@@ -115,7 +135,6 @@ export const InfoCard = ({ children, title }: {
 }) => {
     return (
         <div className="p-4 shadow-md rounded-lg">
-            {title && <h2 className="font-bold">{title}</h2>}
             {children}
         </div>
     );
@@ -128,10 +147,10 @@ export const InfoCard = ({ children, title }: {
 
 
 ## 🏗 Planned improvements
-🔹 Addition of customizable themes
-🔹 Support for PropTypes or advanced TypeScript
-🔹 Automatic generation of Storybook files
-🔹 Generation of Jest tests to verify components
+🔹 Addition of customizable themes <br>
+🔹 Support for PropTypes or advanced TypeScript <br>
+🔹 Automatic generation of Storybook files <br>
+🔹 Generation of Jest tests to verify components <br>
 
 
 <br>
@@ -164,148 +183,5 @@ MIT © 2025 - Kismath Adeleke
 
 <br>
 <br>
-
-
-## 🚀 Utilisation
-### 1️⃣ Générer un composant via CLI
-Tu peux générer un composant en ligne de commande :
-
-```sh
-npx react-tailwind-generator generate button MyButton "px-4 py-2 bg-blue-500 text-white" icon disabled
-```
-
-👉 Cela crée un fichier MyButton.tsx dans ./src/components/ avec ces props :
- - children
- - onClick
- - icon
- - disabled
-
-<br>
-<br>
-
-
- ### 2️⃣ Mode interactif (plus simple 📌)
-Tu peux utiliser un assistant interactif pour choisir le type de composant, son nom et ses props :
-
-```sh
-npx react-tailwind-generator interactive
-```
-
-🔹 L'outil te guidera pour configurer ton composant sans avoir à écrire une longue commande.
-
-<br>
-<br>
-
-## 🎨 Types de composants disponibles
-
-| Type de composant | Description |
-|-------------------|-------------|
-| button            | Bouton cliquable avec onClick |
-| card              | Conteneur stylisé pour afficher du contenu |
-| modal             | Fenêtre modale avec gestion d'affichage |
-| navbar            | Barre de navigation avec du contenu |
-| input             | Champ de saisie avec un placeholder |
-
-
-<br>
-<br>
-
-## 🛠 Exemples
-### 1️⃣ Générer un bouton personnalisé
-
-
-```sh
-npx react-tailwind-generator generate button SubmitButton "px-4 py-2 bg-green-500 text-white" icon disabled
-```
-
-📌 Résultat dans ./src/components/SubmitButton.tsx :
-
-```tsx
-import React from "react";
-
-export const SubmitButton = ({ children, onClick, icon, disabled }: { 
-  children: React.ReactNode; 
-  onClick?: () => void; 
-  icon?: any; 
-  disabled?: boolean; 
-}) => {
-  return (
-    <button className="px-4 py-2 bg-green-500 text-white" onClick={onClick} disabled={disabled}>
-      {icon && <span>{icon}</span>}
-      {children}
-    </button>
-  );
-};
-
-```
-
-
-<br>
-<br>
-
-
-### 2️⃣ Générer une carte avec un titre dynamique
-
-```sh
-npx react-tailwind-generator generate card InfoCard "p-4 shadow-md rounded-lg" title
-```
-
-📌 Résultat dans ./src/components/InfoCard.tsx :
-
-```tsx
-import React from "react";
-
-export const InfoCard = ({ children, title }: { 
-  children: React.ReactNode; 
-  title?: string; 
-}) => {
-  return (
-    <div className="p-4 shadow-md rounded-lg">
-      {title && <h2 className="font-bold">{title}</h2>}
-      {children}
-    </div>
-  );
-};
-
-```
-<br>
-<br>
-
-
-
-## 🏗 Améliorations prévues
-🔹 Ajout de thèmes personnalisables
-🔹 Support des PropTypes ou TypeScript avancé
-🔹 Génération automatique de fichiers Storybook
-🔹 Génération de tests Jest pour vérifier les composants
-
-
-<br>
-<br>
-
-## 👨‍💻 Contribuer
-Si tu veux améliorer ce projet :
-
-Clone le repo
-```sh
-git clone https://github.com/adelekekismath/react-tailwind-generator.git
-```
-
-Installe les dépendances
-```sh
-npm install
-```
-
-
-<br>
-<br>
-
-Fait tes modifications et crée une PR 🚀
-
-
-<br>
-<br>
-## 📜 Licence
-MIT © 2025 - Kismath Adeleke
 
 

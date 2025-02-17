@@ -3,3 +3,7 @@
 /package-lock.json
 src/components/*
 dist/*
+postcss.config.js
+tailwind.config.js
+src/styles.css
+vite.config.ts
