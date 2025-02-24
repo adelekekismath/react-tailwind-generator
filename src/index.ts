@@ -2,13 +2,12 @@ import { program } from "commander";
 import { promptUser } from "./utils/prompts";
 import { writeComponentFile } from "./Generator";
 import { ensureTailwindInstalled } from "./utils/TailwindVerification";
-import { COMPONENT_TYPES, DEFAULT_TAILWIND_CLASSES } from "./utils/constants";
-import { ComponentType } from "./utils/constants";
+import { ComponentType } from "./utils/types";
+import {DEFAULT_CLASSES} from "./utils/constants";
 
-const handleGenerateCommand = (name: string, type: ComponentType, options: { class?: string; props?: string }) => {
-    const className = options.class || DEFAULT_TAILWIND_CLASSES;
-    const props = options.props ? options.props.split(",").map((prop) => prop.trim()) : [];
-    writeComponentFile(type, name, className, props);
+const handleGenerateCommand = (name: string, type: ComponentType, options: { class?: string }) => {
+    const className = options.class || "";
+    writeComponentFile(type, name, className);
 };
 
 const setupCommands = () => {
@@ -19,7 +18,7 @@ const setupCommands = () => {
         .action(async () => {
             try {
                 const answers = await promptUser();
-                writeComponentFile(answers.type, answers.name, answers.className, answers.props);
+                writeComponentFile(answers.type, answers.name, answers.className);
             } catch (error) {
                 console.error("❌ Error during interactive mode:", error);
             }
@@ -29,10 +28,14 @@ const setupCommands = () => {
         .command("generate <name> <type>")
         .alias("g")
         .description("Generate a component via CLI")
-        .option("-c, --class <className>", `Tailwind CSS classes (default: "${DEFAULT_TAILWIND_CLASSES}")`, DEFAULT_TAILWIND_CLASSES)
-        .option("-p, --props <props>", "Props (comma separated)", "")
-        .action((name, type, cmdObj) => {
+        .option("-c, --class <className>", `Tailwind CSS classes`, "")
+        .action((name: string, type: ComponentType, cmdObj: { class?: string }) => {
             try {
+
+                if(cmdObj.class === ""){
+                    cmdObj.class = DEFAULT_CLASSES[type];
+                }
+
                 handleGenerateCommand(name, type, cmdObj);
             } catch (error) {
                 console.error("❌ Error during component generation:", error);

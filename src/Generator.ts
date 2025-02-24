@@ -1,9 +1,8 @@
 import fs from "fs";
 import path from "path";
 import { componentTemplates } from "./ComponentTemplates";
+import { ComponentType } from "./utils/types";
 
-
-type ComponentType = "button" | "card" | "modal" | "input" | "navbar" | "alert" | "dropdown" | "badge" | "avatar" | "footer" | "dropdown";
 
 /**
  * Generates the code for a React/Tailwind component as a string.
@@ -12,13 +11,12 @@ export const generateComponentCode = (
     type: ComponentType,
     name: string,
     className: string,
-    props: string[] = []
 ): string => {
     const template = componentTemplates[type];
     if (!template) {
         throw new Error(`Unknown component type: ${type}`);
     }
-    return template.generate(name, className, props);
+    return template.generate(name, className);
 };
 
 /**
@@ -36,11 +34,10 @@ const ensureDirectoryExists = (dir: string): void => {
 export const writeComponentFile = (
     type: ComponentType,
     name: string,
-    className: string,
-    props: string[] = []
+    className: string
 ): void => {
     try {
-        const componentCode = generateComponentCode(type, name, className, props);
+        const componentCode = generateComponentCode(type, name, className);
         const componentsDir = path.join(process.cwd(), "src", "components");
         ensureDirectoryExists(componentsDir);
         const filePath = path.join(componentsDir, `${name}.jsx`);

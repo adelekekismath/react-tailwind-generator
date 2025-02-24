@@ -1,14 +1,13 @@
 import { IComponentTemplate } from "../IComponentTemplate";
 
 export class ModalTemplate implements IComponentTemplate {
-  generate(name: string, className: string, props: string[] = []): string {
-    const defaultProps = ["onClose = () => {}", "overlayStyle = {}", "modalStyle = {}", "additionalClass = ''"];
-    const allProps = [...defaultProps, ...props].join(", ");
+  generate(name: string, className: string): string {
+    const defaultProps = ["onClose = () => {}", "overlayStyle = {}", "modalStyle = {}", "additionalClass = ''"].join(", ");
 
     return `
 import React from "react";
 
-export const ${name} = ({ children, isOpen, ${allProps} }) => {
+export const ${name} = ({ children, isOpen, ${defaultProps} }) => {
   if (!isOpen) return null;
 
   return (

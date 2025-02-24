@@ -1,14 +1,13 @@
 import { IComponentTemplate } from "../IComponentTemplate";
 
 export class BadgeTemplate implements IComponentTemplate {
-  generate(name: string, className: string, props: string[] = []): string {
-    const defaultProps = ["text = ''", "color = 'blue'", "onClick = () => {}"];
-    const allProps = [...defaultProps, ...props].join(", ");
+  generate(name: string, className: string): string {
+    const defaultProps = ["text = ''", "color = 'blue'", "onClick = () => {}"].join(", ");
 
     return `
 import React from "react";
 
-export const ${name} = ({ text, color, onClick, ${allProps} }) => {
+export const ${name} = ({ ${defaultProps} }) => {
   const colorClass = {
     blue: "bg-blue-100 text-blue-800",
     green: "bg-green-100 text-green-800",

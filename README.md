@@ -26,7 +26,7 @@ yarn global add react-tailwind-generator
 You can generate a component via command line:
 
 ```sh
-npx react-tailwind-generator generate  <ComponentName> <ComponentType> -c "<TailwindClasses>" -p "<Prop1> ,<Prop2>, ..."
+npx react-tailwind-generator generate  <ComponentName> <ComponentType> -c "<TailwindClasses>" "
 ```
 
 🔹 ComponentName: The name of the component you want to create. Ex: CloseButton, InfoCard, etc. <br>
@@ -46,9 +46,9 @@ npx react-tailwind-generator generate  <ComponentName> <ComponentType> -c "<Tail
 | dropdown       | Dropdown menu with options |
 | input          | Input field with a placeholder |
 <br>
+<br>
 
 🔹 TailwindClasses: The Tailwind CSS classes you want to apply to the component. Ex: "px-4 py-2 bg-blue-500 text-white" <br>
-🔹 Props: The props you want to add to the component. Ex: "onClick, icon, disabled" <br>
 
   
 
@@ -61,11 +61,13 @@ Ex: You can generate a button component via command line:
 npx react-tailwind-generator generate  MyButton button "px-4 py-2 bg-blue-500 text-white" icon disabled
 ```
 
-👉 This creates a MyButton.tsx file in ./src/components/ with these props:
- - children
+👉 This creates a MyButton.tsx file in ./src/components/ with these defaults props:
+ - type
+ - text
  - onClick
- - icon
  - disabled
+ - ariaLabel
+
 
 <br>
 <br>
@@ -90,25 +92,26 @@ npx react-tailwind-generator interactive
 ### 1️⃣ Generate a custom button
 
 ```sh
-npx react-tailwind-generator generate  SubmitButton button -c "px-4 py-2 bg-green-500 text-white" -p "disabled"
+npx react-tailwind-generator generate  ButtonComponent button -c "px-4 py-2 bg-green-500 text-white" 
 ```
 
-📌 Result in ./src/components/SubmitButton.tsx:
+📌 Result in ./src/components/ButtonComponent.jsx:
 
-```tsx
+```jsx
 import React from "react";
 
-export const SubmitButton = ({ children, onClick, disabled }: { 
-    children: React.ReactNode; 
-    onClick?: () => void; 
-    icon?: any; 
-    disabled?: boolean; 
-}) => {
-    return (
-        <button className="px-4 py-2 bg-green-500 text-white" onClick={onClick} disabled={disabled}>
-            {children}
-        </button>
-    );
+export const ButtonComponent = ({ text = '', disabled = false, type='button' , onClick = () => {}, ariaLabel = '' }) => {
+  return (
+    <button
+        className="px-4 py-2 bg-blue-500 text-white rounded"
+        onClick={onClick}
+        type={type}
+        disabled={disabled}
+        aria-label={ariaLabel}
+    >
+      {text}
+    </button>
+  );
 };
 
 ```
@@ -121,24 +124,25 @@ export const SubmitButton = ({ children, onClick, disabled }: {
 ### 2️⃣ Generate a card with a dynamic title
 
 ```sh
-npx react-tailwind-generator generate  InfoCard card -c "p-4 shadow-md rounded-lg" -p "title"
+npx react-tailwind-generator generate  InfoCard card -c "p-4 shadow-md rounded-lg" 
 ```
 
-📌 Result in ./src/components/InfoCard.tsx:
+📌 Result in ./src/components/InfoCard.jsx:
 
-```tsx
+```jsx
+
 import React from "react";
 
-export const InfoCard = ({ children, title }: { 
-    children: React.ReactNode; 
-    title?: string; 
-}) => {
-    return (
-        <div className="p-4 shadow-md rounded-lg">
-            {children}
-        </div>
-    );
+export const InfoCard = ({ children, style = {}, additionalClass = '', header = null, footer = null }) => {
+  return (
+    <div className={`${className} ${additionalClass}`} style={style}>
+      {header && <div className="card-header">{header}</div>}
+      <div className="card-body">{children}</div>
+      {footer && <div className="card-footer">{footer}</div>}
+    </div>
+  );
 };
+    
 
 ```
 <br>

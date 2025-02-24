@@ -1,14 +1,13 @@
 import { IComponentTemplate } from "../IComponentTemplate";
 
 export class AvatarTemplate implements IComponentTemplate {
-  generate(name: string, className: string, props: string[] = []): string {
-    const defaultProps = ["src = ''", "alt = 'Avatar'", "size = 'md'", "shape = 'circle'"];
-    const allProps = [...defaultProps, ...props].join(", ");
+  generate(name: string, className: string): string {
+    const defaultProps = ["src = ''", "alt = 'Avatar'", "size = 'md'", "shape = 'circle'"].join(", ");
 
     return `
 import React from "react";
 
-export const ${name} = ({ src, alt, size, shape, ${allProps} }) => {
+export const ${name} = ({${defaultProps} }) => {
   const sizeClass = {
     sm: "w-8 h-8",
     md: "w-12 h-12",

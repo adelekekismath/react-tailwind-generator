@@ -1,4 +1,4 @@
-import program from "./index"; // Assure-toi que le bon chemin est utilisé
+import program from "./index"; 
 import inquirer from "inquirer";
 import * as generatorModule from "./Generator"; 
 

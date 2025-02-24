@@ -1,3 +1,3 @@
 export interface IComponentTemplate {
-    generate(name: string, className: string, props?: string[]): string;
+    generate(name: string, className: string): string;
   }

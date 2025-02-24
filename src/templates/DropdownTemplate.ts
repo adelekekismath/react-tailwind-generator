@@ -1,14 +1,13 @@
 import { IComponentTemplate } from "../IComponentTemplate";
 
 export class DropdownTemplate implements IComponentTemplate {
-  generate(name: string, className: string, props: string[] = []): string {
-    const defaultProps = ["options = []", "onSelect = () => {}", "placeholder = 'Select an option'"];
-    const allProps = [...defaultProps, ...props].join(", ");
+  generate(name: string, className: string): string {
+    const defaultProps = ["options = []", "placeholder = 'Select an option'"].join(", ");
 
     return `
 import React, { useState } from "react";
 
-export const ${name} = ({ options, onSelect, placeholder, ${allProps} }) => {
+export const ${name} = ({ onSelect, ${defaultProps} }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedValue, setSelectedValue] = useState("");
 

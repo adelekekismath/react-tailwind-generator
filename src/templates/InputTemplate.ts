@@ -1,22 +1,21 @@
 import { IComponentTemplate } from "../IComponentTemplate";
 
 export class InputTemplate implements IComponentTemplate {
-  generate(name: string, className: string, props: string[] = []): string {
-    const defaultProps = ["type = 'text'", "style = {}", "onChange = () => {}", "onBlur = () => {}"];
-    const allProps = [...defaultProps, ...props].join(", ");
+  generate(name: string, className: string): string {
+    const defaultProps = ["placeholder=''", "type = 'text'", "value = ''", "onChange = () => {}", "onBlur = () => {}"].join(", ");
 
     return `
 import React from "react";
 
-export const ${name} = ({ placeholder, ${allProps} }) => {
+export const ${name} = ({ ${defaultProps} }) => {
   return (
     <input
-      className="${className}"
-      placeholder={placeholder}
-      type={type}
-      style={style}
-      onChange={onChange}
-      onBlur={onBlur}
+        className="${className}"
+        placeholder={placeholder}
+        type={type}
+        value={value}
+        onChange={onChange}
+        onBlur={onBlur}
     />
   );
 };

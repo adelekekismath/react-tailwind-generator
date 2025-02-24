@@ -4,24 +4,22 @@ type ButtonType = "button" | "submit" | "reset";
 
 export class ButtonTemplate implements IComponentTemplate {
 
-  generate(name: string, className: string, props: string[] = []): string {
-    // Ajouter des props par défaut
-    const defaultProps = [ "disabled = false", "type='button' ", "ariaLabel = ''"];
-    const allProps = [...defaultProps, ...props].join(", ");
+  generate(name: string, className: string): string {
+    const defaultProps = [ "text = ''", "disabled = false", "type='button' ","onClick = () => {}", "ariaLabel = ''"].join(", ");
 
     return `
 import React from "react";
 
-export const ${name} = ({ children, onClick, ${allProps} }) => {
+export const ${name} = ({ ${defaultProps} }) => {
   return (
     <button
-      className="${className}"
-      onClick={onClick}
-      type={type}
-      disabled={disabled}
-      aria-label={ariaLabel}
+        className="${className}"
+        onClick={onClick}
+        type={type}
+        disabled={disabled}
+        aria-label={ariaLabel}
     >
-      {children}
+      {text}
     </button>
   );
 };

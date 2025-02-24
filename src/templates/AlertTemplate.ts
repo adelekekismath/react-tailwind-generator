@@ -1,14 +1,13 @@
 import { IComponentTemplate } from "../IComponentTemplate";
 
 export class AlertTemplate implements IComponentTemplate {
-  generate(name: string, className: string, props: string[] = []): string {
-    const defaultProps = ["type = 'info'", "message = ''", "onClose = () => {}"];
-    const allProps = [...defaultProps, ...props].join(", ");
+  generate(name: string, className: string): string {
+    const defaultProps = ["type = 'info'", "message = ''", "onClose = () => {}"].join(", ");
 
     return `
 import React from "react";
 
-export const ${name} = ({ type, message, onClose, ${allProps} }) => {
+export const ${name} = ({ ${defaultProps} }) => {
   const alertClass = \`${className} p-4 rounded-lg \${{
     info: "bg-blue-100 text-blue-800",
     success: "bg-green-100 text-green-800",
