@@ -37,6 +37,7 @@ export const writeComponentFile = (
     className: string
 ): void => {
     try {
+        console.log(`🛠 Generating component ${name} of type ${type}...`);
         const componentCode = generateComponentCode(type, name, className);
         const componentsDir = path.join(process.cwd(), "src", "components");
         ensureDirectoryExists(componentsDir);

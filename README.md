@@ -65,10 +65,15 @@ npx rtg g <ComponentName> <ComponentType> -c "<TailwindClasses>" "
 Ex: You can generate a button component via command line:
 
 ```sh
-npx react-tailwind-generator generate  MyButton button "px-4 py-2 bg-blue-500 text-white" icon disabled
+npx react-tailwind-generator generate  CloseButton button -c "px-4 py-2 bg-blue-500 text-white"
+```
+or 
+
+```sh
+npx rtg g  CloseButton button -c "px-4 py-2 bg-blue-500 text-white"
 ```
 
-👉 This creates a MyButton.tsx file in ./src/components/ with these defaults props:
+👉 This creates a CloseButton.jsx file in ./src/components/ with these defaults props:
  - type
  - text
  - onClick
@@ -142,7 +147,7 @@ import React from "react";
 
 export const InfoCard = ({ children, style = {}, additionalClass = '', header = null, footer = null }) => {
   return (
-    <div className={`${className} ${additionalClass}`} style={style}>
+    <div className={`p-4 shadow-md rounded-lg ${additionalClass}`} style={style}>
       {header && <div className="card-header">{header}</div>}
       <div className="card-body">{children}</div>
       {footer && <div className="card-footer">{footer}</div>}
