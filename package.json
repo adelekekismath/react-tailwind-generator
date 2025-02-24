@@ -1,6 +1,6 @@
 {
   "name": "react-tailwind-generator",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "main": "dist/index.js",
   "bin": {
     "react-tailwind-generator": "dist/index.js"
@@ -15,7 +15,7 @@
     "generator"
   ],
   "author": "Kismath ADELEKE",
-  "license": "ISC",
+  "license": "MIT",
   "description": "A generator for React components styled with Tailwind CSS.",
   "devDependencies": {
     "@tailwindcss/vite": "^4.0.6",

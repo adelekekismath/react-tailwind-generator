@@ -8,7 +8,7 @@ export class NavbarTemplate implements IComponentTemplate {
     return `
 import React from "react";
 
-export const ${name} = ({ children, ${allProps} }: ${name}Props) => {
+export const ${name} = ({ children, ${allProps} }) => {
   return (
     <nav className={\`${className} bg-gray-800 text-white p-4 \${additionalClass}\`} style={style}>
       <div className="container mx-auto flex justify-between items-center">

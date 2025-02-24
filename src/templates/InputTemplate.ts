@@ -8,7 +8,7 @@ export class InputTemplate implements IComponentTemplate {
     return `
 import React from "react";
 
-export const ${name} = ({ placeholder, ${allProps} }: ${name}Props) => {
+export const ${name} = ({ placeholder, ${allProps} }) => {
   return (
     <input
       className="${className}"

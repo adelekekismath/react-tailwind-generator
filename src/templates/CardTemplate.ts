@@ -8,7 +8,7 @@ export class CardTemplate implements IComponentTemplate {
     return `
 import React from "react";
 
-export const ${name} = ({ children, ${allProps} }: ${name}Props) => {
+export const ${name} = ({ children, ${allProps} }) => {
   return (
     <div className={\`${className} p-4 shadow-md rounded-lg \${additionalClass}\`} style={style}>
       {header && <div className="card-header">{header}</div>}

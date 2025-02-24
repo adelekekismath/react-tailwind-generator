@@ -1,6 +1,6 @@
 import program from "./index"; // Assure-toi que le bon chemin est utilisé
 import inquirer from "inquirer";
-import * as generatorModule from "./generator"; 
+import * as generatorModule from "./Generator"; 
 
 
 jest.spyOn(generatorModule, "writeComponentFile");

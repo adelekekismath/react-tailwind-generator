@@ -1,22 +1,25 @@
-# Ignorer les dépendances et fichiers générés
+
 node_modules/
 dist/
 coverage/
 
-# Ignorer les fichiers de test
 __tests__/
 *.test.ts
 *.test.js
 *.spec.ts
 *.spec.js
 
-# Ignorer les composants générés (si ce n'est pas du code source du package)
 src/components/
 
-# Ignorer les fichiers de configuration et logs
 *.log
 *.lock
 .DS_Store
 .vscode/
 .idea/
 .env
+
+
+postcss.config.js
+tailwind.config.js
+src/styles.css
+vite.config.ts

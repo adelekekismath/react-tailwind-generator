@@ -8,7 +8,7 @@ export class AvatarTemplate implements IComponentTemplate {
     return `
 import React from "react";
 
-export const ${name} = ({ src, alt, size, shape, ${allProps} }: ${name}Props) => {
+export const ${name} = ({ src, alt, size, shape, ${allProps} }) => {
   const sizeClass = {
     sm: "w-8 h-8",
     md: "w-12 h-12",

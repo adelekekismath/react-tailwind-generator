@@ -1,53 +1,60 @@
-#!/usr/bin/env node
-
-
 import { program } from "commander";
-import inquirer from "inquirer";
-import { writeComponentFile } from "./generator";
+import { promptUser } from "./utils/prompts";
+import { writeComponentFile } from "./Generator";
 import { ensureTailwindInstalled } from "./utils/TailwindVerification";
+import { COMPONENT_TYPES, DEFAULT_TAILWIND_CLASSES } from "./utils/constants";
+import { ComponentType } from "./utils/constants";
 
-const promptUser = async () => {
-
-    const answers = await inquirer.prompt([
-        { type: "input", name: "name", message: "Component name ?" },
-        { type: "list", name: "type", message: "Component type ?", choices: ["button", "card", "modal", "input"] },
-        { type: "input", name: "className", message: "TailwindCSS class name ?" },
-        { type: "input", name: "props", message: "Props (comma separated or leave empty): ?" }
-    ]);
-
-
-    writeComponentFile(answers.type, answers.name, answers.className, answers.props.split(","));
-    
+const handleGenerateCommand = (name: string, type: ComponentType, options: { class?: string; props?: string }) => {
+    const className = options.class || DEFAULT_TAILWIND_CLASSES;
+    const props = options.props ? options.props.split(",").map((prop) => prop.trim()) : [];
+    writeComponentFile(type, name, className, props);
 };
 
-program
-    .command("interactive")
-    .description("Launch the interactive component generator")
-    .action(promptUser);
+const setupCommands = () => {
+    program
+        .command("interactive")
+        .alias("i")
+        .description("Launch the interactive component generator")
+        .action(async () => {
+            try {
+                const answers = await promptUser();
+                writeComponentFile(answers.type, answers.name, answers.className, answers.props);
+            } catch (error) {
+                console.error("❌ Error during interactive mode:", error);
+            }
+        });
 
+    program
+        .command("generate <name> <type>")
+        .alias("g")
+        .description("Generate a component via CLI")
+        .option("-c, --class <className>", `Tailwind CSS classes (default: "${DEFAULT_TAILWIND_CLASSES}")`, DEFAULT_TAILWIND_CLASSES)
+        .option("-p, --props <props>", "Props (comma separated)", "")
+        .action((name, type, cmdObj) => {
+            try {
+                handleGenerateCommand(name, type, cmdObj);
+            } catch (error) {
+                console.error("❌ Error during component generation:", error);
+            }
+        });
 
-program
-    .command("generate <name> <type>")
-    .description("Generate a component via CLI")
-    .option("-c, --class <className>", "Tailwind CSS classes", "p-4 bg-gray-100 rounded-lg")
-    .option("-p, --props <props>", "Props (comma separated)", "")
-    .action((name, type, cmdObj) => {
-        const { class: className, props } = cmdObj;
-        writeComponentFile(type, name, className, props.split(","));
-    });
+    program
+        .option("-h, --help", "Display help for command")
+        .action(() => {
+            program.help();
+        });
+};
 
-program
-    .option("-h, --help", "Display help for command")
-    .action(() => {
-        program.help();
-    });
-
- 
-async function main() {
-    await ensureTailwindInstalled();
-    program.parse(process.argv);
-}
+const main = async () => {
+    try {
+        await ensureTailwindInstalled();
+        setupCommands();
+        program.parse(process.argv);
+    } catch (error) {
+        console.error("❌ An error occurred:", error);
+        process.exit(1);
+    }
+};
 
 main();
-
-export default program;

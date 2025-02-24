@@ -8,7 +8,7 @@ export class ModalTemplate implements IComponentTemplate {
     return `
 import React from "react";
 
-export const ${name} = ({ children, isOpen, ${allProps} }: ${name}Props) => {
+export const ${name} = ({ children, isOpen, ${allProps} }) => {
   if (!isOpen) return null;
 
   return (

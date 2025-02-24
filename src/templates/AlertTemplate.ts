@@ -8,7 +8,7 @@ export class AlertTemplate implements IComponentTemplate {
     return `
 import React from "react";
 
-export const ${name} = ({ type, message, onClose, ${allProps} }: ${name}Props) => {
+export const ${name} = ({ type, message, onClose, ${allProps} }) => {
   const alertClass = \`${className} p-4 rounded-lg \${{
     info: "bg-blue-100 text-blue-800",
     success: "bg-green-100 text-green-800",

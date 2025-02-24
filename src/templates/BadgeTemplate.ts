@@ -8,7 +8,7 @@ export class BadgeTemplate implements IComponentTemplate {
     return `
 import React from "react";
 
-export const ${name} = ({ text, color, onClick, ${allProps} }: ${name}Props) => {
+export const ${name} = ({ text, color, onClick, ${allProps} }) => {
   const colorClass = {
     blue: "bg-blue-100 text-blue-800",
     green: "bg-green-100 text-green-800",

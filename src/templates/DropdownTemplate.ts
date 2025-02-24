@@ -8,7 +8,7 @@ export class DropdownTemplate implements IComponentTemplate {
     return `
 import React, { useState } from "react";
 
-export const ${name} = ({ options, onSelect, placeholder, ${allProps} }: ${name}Props) => {
+export const ${name} = ({ options, onSelect, placeholder, ${allProps} }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedValue, setSelectedValue] = useState("");
 
