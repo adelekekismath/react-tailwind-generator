@@ -29,8 +29,15 @@ You can generate a component via command line:
 npx react-tailwind-generator generate  <ComponentName> <ComponentType> -c "<TailwindClasses>" "
 ```
 
+or 
+
+```sh
+npx rtg g <ComponentName> <ComponentType> -c "<TailwindClasses>" "
+```
+<br>
+
 🔹 ComponentName: The name of the component you want to create. Ex: CloseButton, InfoCard, etc. <br>
-🔹 ComponentType: The type of component you want to create. <br>
+🔹 ComponentType: The type of component you want to create. <br><br>
 
  🎨 Available component types are:
 
