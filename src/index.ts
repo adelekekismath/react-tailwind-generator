@@ -28,19 +28,18 @@ const setupCommands = () => {
         .command("generate <name> <type>")
         .alias("g")
         .description("Generate a component via CLI")
-        .option("-c, --class <className>", `Tailwind CSS classes`, "")
+        .option("-c, --class <className>", "Tailwind CSS classes", "")
         .action((name: string, type: ComponentType, cmdObj: { class?: string }) => {
             try {
-
-                if(cmdObj.class === ""){
+                if (cmdObj.class === "") {
                     cmdObj.class = DEFAULT_CLASSES[type];
                 }
-
                 handleGenerateCommand(name, type, cmdObj);
             } catch (error) {
                 console.error("❌ Error during component generation:", error);
             }
         });
+
 
     program
         .option("-h, --help", "Display help for command")
