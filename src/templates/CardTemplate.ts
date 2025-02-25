@@ -1,4 +1,4 @@
-import { AbstractComponentTemplate } from "../AbstractComponentTemplate";
+import { AbstractComponentTemplate } from "./AbstractComponentTemplate";
 import { ComponentType } from "../utils/types";
 
 export class CardTemplate extends AbstractComponentTemplate {
@@ -21,8 +21,8 @@ interface ${name}Props {
 
     const componentType = isTypeScript ? `: React.FC<${name}Props>` : "";
 
-    return `
-import React from "react";
+    
+return `import React from "react";
 ${propsInterface}
 export const ${name}${componentType} = ({ ${defaultProps} }) => {
     return (

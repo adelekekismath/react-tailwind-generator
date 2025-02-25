@@ -1,5 +1,5 @@
-import { DEFAULT_PROPS } from "./utils/constants";
-import { ComponentType } from "./utils/types";
+import { DEFAULT_PROPS } from "../utils/constants";
+import { ComponentType } from "../utils/types";
 
 export abstract class AbstractComponentTemplate {
     /**

@@ -1,47 +1,11 @@
 import { program } from "commander";
-import { promptUser } from "./utils/prompts";
-import { writeComponentFile } from "./Generator";
-import { ensureTailwindInstalled } from "./utils/TailwindVerification";
-import { ComponentType } from "./utils/types";
-import {DEFAULT_CLASSES} from "./utils/constants";
-
-const handleGenerateCommand = (name: string, type: ComponentType, options: { class?: string, typescript?: boolean }) => {
-    const className = options.class || "";
-    const isTypeScript = options.typescript || false;
-    writeComponentFile(type, name, className, isTypeScript);
-};
+import { setupGenerateCommand } from "./commands/generate";
+import { setupInteractiveCommand } from "./commands/interactive";
+import { ensureTailwindInstalled } from "./utils/tailwindVerification";
 
 const setupCommands = () => {
-    program
-        .command("interactive")
-        .alias("i")
-        .description("Launch the interactive component generator")
-        .action(async () => {
-            try {
-                const answers = await promptUser();
-                writeComponentFile(answers.type, answers.name, answers.className, answers.isTypescript);
-            } catch (error) {
-                console.error("❌ Error during interactive mode:", error);
-            }
-        });
-
-    program
-        .command("generate <name> <type>")
-        .alias("g")
-        .description("Generate a component via CLI")
-        .option("-c, --class <className>", "Tailwind CSS classes", "")
-        .option("-t, --typescript", "Generate TypeScript code")
-        .action((name: string, type: ComponentType, cmdObj: { class?: string, typescript?: boolean }) => {
-            try {
-                if (cmdObj.class === "") {
-                    cmdObj.class = DEFAULT_CLASSES[type];
-                }
-                handleGenerateCommand(name, type, cmdObj);
-            } catch (error) {
-                console.error("❌ Error during component generation:", error);
-            }
-        });
-
+    setupGenerateCommand(program);
+    setupInteractiveCommand(program);
 
     program
         .option("-h, --help", "Display help for command")
@@ -62,3 +26,5 @@ const main = async () => {
 };
 
 main();
+
+export { program };

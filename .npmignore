@@ -4,6 +4,7 @@ dist/
 coverage/
 
 __tests__/
+tests/
 *.test.ts
 *.test.js
 *.spec.ts

@@ -1,5 +1,5 @@
 import { ComponentType } from "../utils/types";
-import { AbstractComponentTemplate } from "../AbstractComponentTemplate";
+import { AbstractComponentTemplate } from "./AbstractComponentTemplate";
 
 
 const ALERT_CLASSES = {
@@ -28,8 +28,8 @@ interface ${name}Props {
 
         const componentType = isTypeScript ? `: React.FC<${name}Props>` : "";
 
-        return `
-import React , { useState } from "react";
+         
+return `import React , { useState } from "react";
 ${propsInterface}
 export const ${name}${componentType} = ({ ${this.getDefaultProps()} }) => {
     const [visible, setVisible] = useState(true);

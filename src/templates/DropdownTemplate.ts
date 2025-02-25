@@ -1,4 +1,4 @@
-import { AbstractComponentTemplate } from "../AbstractComponentTemplate";
+import { AbstractComponentTemplate } from "./AbstractComponentTemplate";
 import { ComponentType } from "../utils/types";
 
 export class DropdownTemplate extends AbstractComponentTemplate {
@@ -20,8 +20,7 @@ interface ${name}Props {
 
     const componentType = isTypeScript ? `: React.FC<${name}Props>` : "";
 
-    return `
-import React, { useState } from "react";
+return `import React, { useState } from "react";
 ${propsInterface}
 
 export const ${name}${componentType} = ({ ${defaultProps} }) => {

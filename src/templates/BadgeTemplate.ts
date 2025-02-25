@@ -1,4 +1,4 @@
-import { AbstractComponentTemplate } from "../AbstractComponentTemplate";
+import { AbstractComponentTemplate } from "./AbstractComponentTemplate";
 import { ComponentType } from "../utils/types";
 
 export class BadgeTemplate extends AbstractComponentTemplate {
@@ -19,8 +19,8 @@ interface ${name}Props {
 `
       : "";
 
-    return `
-import React from "react";
+    
+return `import React from "react";
 ${propsInterface}
 export const ${name}${isTypeScript ? `: React.FC<${name}Props>` : ""} = ({ ${this.getDefaultProps()} }) => {
   const colorClass = {
