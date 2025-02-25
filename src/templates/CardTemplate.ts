@@ -1,20 +1,38 @@
-import { IComponentTemplate } from "../IComponentTemplate";
+import { AbstractComponentTemplate } from "../AbstractComponentTemplate";
+import { ComponentType } from "../utils/types";
 
-export class CardTemplate implements IComponentTemplate {
-  generate(name: string, className: string): string {
-    const defaultProps = ["style = {}", "header = null", "footer = null"].join(", ");
+export class CardTemplate extends AbstractComponentTemplate {
+  protected getComponentType(): ComponentType {
+    return "card";
+  }
+
+  protected generateComponent(name: string, className: string, isTypeScript: boolean): string {
+    const defaultProps = this.getDefaultProps();
+    const propsInterface = isTypeScript
+      ? `
+interface ${name}Props {
+    header?: React.ReactNode;
+    footer?: React.ReactNode;
+    title: string;
+    content: React.ReactNode;
+}
+`
+      : "";
+
+    const componentType = isTypeScript ? `: React.FC<${name}Props>` : "";
 
     return `
 import React from "react";
-
-export const ${name} = ({ children, ${defaultProps} }) => {
-  return (
-    <div className={"${className}"} style={style}>
-      {header && <div className="card-header">{header}</div>}
-      <div className="card-body">{children}</div>
-      {footer && <div className="card-footer">{footer}</div>}
-    </div>
-  );
+${propsInterface}
+export const ${name}${componentType} = ({ ${defaultProps} }) => {
+    return (
+        <div className="${className}">
+            <h1 className="text-2xl font-bold">{title}</h1>
+            {header && <div className="card-header">{header}</div>}
+            <div className="card-body">{content}</div>
+            {footer && <div className="card-footer">{footer}</div>}
+        </div>
+    );
 };
     `;
   }

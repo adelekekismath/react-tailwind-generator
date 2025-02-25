@@ -1,13 +1,29 @@
-import { IComponentTemplate } from "../IComponentTemplate";
+import { AbstractComponentTemplate } from "../AbstractComponentTemplate";
+import { ComponentType } from "../utils/types";
 
-export class AvatarTemplate implements IComponentTemplate {
-  generate(name: string, className: string): string {
-    const defaultProps = ["src = ''", "alt = 'Avatar'", "size = 'md'", "shape = 'circle'"].join(", ");
+export class AvatarTemplate extends AbstractComponentTemplate {
 
-    return `
+    protected getComponentType(): ComponentType {
+        return "avatar";
+    }
+
+    generateComponent(name: string, className: string, isTypeScript: boolean): string {
+        const propsInterface = isTypeScript
+            ? `
+interface ${name}Props {
+  src?: string;
+  alt?: string;
+  size?: 'sm' | 'md' | 'lg';
+  shape?: 'circle' | 'square';
+  className?: string;
+}
+`
+            : "";
+
+        return `
 import React from "react";
-
-export const ${name} = ({${defaultProps} }) => {
+${propsInterface}
+export const ${name}${isTypeScript ? `: React.FC<${name}Props>` : ""} = ({ ${this.getDefaultProps()} }) => {
   const sizeClass = {
     sm: "w-8 h-8",
     md: "w-12 h-12",
@@ -25,5 +41,5 @@ export const ${name} = ({${defaultProps} }) => {
   );
 };
     `;
-  }
+    }
 }

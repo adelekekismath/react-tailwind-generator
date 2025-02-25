@@ -5,9 +5,10 @@ import { ensureTailwindInstalled } from "./utils/TailwindVerification";
 import { ComponentType } from "./utils/types";
 import {DEFAULT_CLASSES} from "./utils/constants";
 
-const handleGenerateCommand = (name: string, type: ComponentType, options: { class?: string }) => {
+const handleGenerateCommand = (name: string, type: ComponentType, options: { class?: string, typescript?: boolean }) => {
     const className = options.class || "";
-    writeComponentFile(type, name, className);
+    const isTypeScript = options.typescript || false;
+    writeComponentFile(type, name, className, isTypeScript);
 };
 
 const setupCommands = () => {
@@ -18,7 +19,7 @@ const setupCommands = () => {
         .action(async () => {
             try {
                 const answers = await promptUser();
-                writeComponentFile(answers.type, answers.name, answers.className);
+                writeComponentFile(answers.type, answers.name, answers.className, answers.isTypescript);
             } catch (error) {
                 console.error("❌ Error during interactive mode:", error);
             }
@@ -29,7 +30,8 @@ const setupCommands = () => {
         .alias("g")
         .description("Generate a component via CLI")
         .option("-c, --class <className>", "Tailwind CSS classes", "")
-        .action((name: string, type: ComponentType, cmdObj: { class?: string }) => {
+        .option("-t, --typescript", "Generate TypeScript code")
+        .action((name: string, type: ComponentType, cmdObj: { class?: string, typescript?: boolean }) => {
             try {
                 if (cmdObj.class === "") {
                     cmdObj.class = DEFAULT_CLASSES[type];

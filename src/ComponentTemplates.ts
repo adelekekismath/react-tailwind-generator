@@ -1,4 +1,4 @@
-import { IComponentTemplate } from "./IComponentTemplate";
+import { AbstractComponentTemplate } from "./AbstractComponentTemplate";
 import { ButtonTemplate } from "./templates/ButtonTemplate";
 import { CardTemplate } from "./templates/CardTemplate";
 import { ModalTemplate } from "./templates/ModalTemplate";
@@ -10,7 +10,7 @@ import { BadgeTemplate } from "./templates/BadgeTemplate";
 import { AvatarTemplate } from "./templates/AvatarTemplate";
 import { FooterTemplate } from "./templates/FooterTemplate";
 
-export const componentTemplates: Record<string, IComponentTemplate> = {
+export const componentTemplates: Record<string, AbstractComponentTemplate> = {
     button: new ButtonTemplate(),
     card: new CardTemplate(),
     modal: new ModalTemplate(),

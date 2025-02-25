@@ -1,13 +1,13 @@
 import { ComponentType } from "./types";
 
 export const COMPONENT_TYPES: ComponentType[] = [
-  "button", "card", "modal", "input", "navbar", "alert", "dropdown", "badge", "avatar", "footer"
+    "alert", "avatar", "badge", "button", "card", "dropdown", "footer", "input", "modal", "navbar"
 ];
 
 export const DEFAULT_CLASSES: Record<ComponentType, string> = {
     button: "px-4 py-2 bg-blue-500 text-white rounded",
     card: "p-6 bg-white shadow-md rounded-lg",
-    modal: "fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center",
+    modal: "bg-white p-6 rounded-lg shadow-lg ",
     input: "p-2 border border-gray-300 rounded",
     navbar: "p-4 bg-gray-800 text-white",
     alert: "p-4 bg-red-100 text-red-700 rounded",
@@ -19,14 +19,15 @@ export const DEFAULT_CLASSES: Record<ComponentType, string> = {
 
 
   export const DEFAULT_PROPS: Record<ComponentType, string[]> = {
-    button: ["onClick", "disabled"],
-    card: ["title", "content"],
-    modal: ["isOpen", "onClose"],
-    input: ["value", "onChange", "placeholder"],
-    navbar: ["logo", "links"],
-    alert: ["message", "type"],
-    dropdown: ["options", "onSelect"],
-    badge: ["text", "variant"],
-    avatar: ["src", "alt"],
-    footer: ["copyrightText"],
+    button: ["text = ''", "disabled = false", "type = 'button'", "onClick = () => {}", "ariaLabel = ''"],
+    alert: ["type = 'info'", "message = ''", "onClose = () => {}"],
+    badge: ["text = ''", "color = 'blue'", "onClick = () => {}"],
+    avatar: ["src = ''", "alt = 'Avatar'", "size = 'md'", "shape = 'circle'"],
+    card: ["header = null", "footer = null","title", "content"],
+    dropdown: ["options = []", "placeholder = 'Select an option'", "onSelect = () => {}"],
+    footer: [ "leftSection = null", "rightSection = null", "centerSection = null", "links = []"],
+    input: ["placeholder = ''", "type = 'text'", "value = ''", "onChange = () => {}", "onBlur = () => {}"],
+    modal: ["isOpen = false", "onClose = () => {}"],
+    navbar: ["logo = ''", "links = []", "leftSection = null", "rightSection = null"],
+
   };

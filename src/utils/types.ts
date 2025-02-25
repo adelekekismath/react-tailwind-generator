@@ -1,1 +1,11 @@
-export type ComponentType ="button" | "card" | "modal" | "input" | "navbar" | "alert" | "dropdown" | "badge" | "avatar" | "footer" | "dropdown";
+export type ComponentType = 
+  | "alert"
+  | "avatar"
+  | "badge"
+  | "button"
+  | "card"
+  | "dropdown"
+  | "footer"
+  | "input"
+  | "modal"
+  | "navbar";

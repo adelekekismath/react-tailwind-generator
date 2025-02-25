@@ -1,13 +1,28 @@
-import { IComponentTemplate } from "../IComponentTemplate";
+import { AbstractComponentTemplate } from "../AbstractComponentTemplate";
+import { ComponentType } from "../utils/types";
 
-export class BadgeTemplate implements IComponentTemplate {
-  generate(name: string, className: string): string {
-    const defaultProps = ["text = ''", "color = 'blue'", "onClick = () => {}"].join(", ");
+export class BadgeTemplate extends AbstractComponentTemplate {
+
+  protected getComponentType(): ComponentType {
+    return "badge";
+  }
+
+  generateComponent(name: string, className: string, isTypeScript: boolean): string {
+    const propsInterface = isTypeScript
+      ? `
+interface ${name}Props {
+  text?: string;
+  color?: 'blue' | 'green' | 'red' | 'yellow';
+  onClick?: () => void;
+  className?: string;
+}
+`
+      : "";
 
     return `
 import React from "react";
-
-export const ${name} = ({ ${defaultProps} }) => {
+${propsInterface}
+export const ${name}${isTypeScript ? `: React.FC<${name}Props>` : ""} = ({ ${this.getDefaultProps()} }) => {
   const colorClass = {
     blue: "bg-blue-100 text-blue-800",
     green: "bg-green-100 text-green-800",
@@ -18,7 +33,7 @@ export const ${name} = ({ ${defaultProps} }) => {
   return (
     <span
       onClick={onClick}
-      className={\`${className} px-2 py-1 rounded-full text-sm \${colorClass}\`}
+      className={\`${className} \${colorClass}\`}
     >
       {text}
     </span>

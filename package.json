@@ -1,6 +1,6 @@
 {
   "name": "react-tailwind-generator",
-  "version": "1.0.12",
+  "version": "2.0.0",
   "main": "dist/index.js",
   "bin": {
     "react-tailwind-generator": "dist/index.js",

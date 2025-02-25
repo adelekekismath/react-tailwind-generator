@@ -43,7 +43,7 @@ npx rtg g <ComponentName> <ComponentType> -c "<TailwindClasses>" "
 
 | Component type | Description |
 |----------------|-------------|
-| button         | Clickable button with onClick |
+| button         | A button with text ,onClick and onBlur event, disabled, aria-label 
 | card           | Styled container to display content |
 | modal          | Modal window with display management |
 | navbar         | Navigation bar with content |
