@@ -25,3 +25,4 @@ tailwind.config.js
 src/styles.css
 vite.config.ts
 jest.config.js
+jest.setup.js

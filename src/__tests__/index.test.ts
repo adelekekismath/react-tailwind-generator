@@ -2,7 +2,7 @@ import { program } from "../index";
 import inquirer from "inquirer";
 import * as generatorModule from "../writeComponentFile"; 
 
-jest.spyOn(generatorModule, "writeComponentFile");
+//jest.spyOn(generatorModule, "writeComponentFile");
 
 describe("CLI commands", () => {
   const originalArgv = process.argv;
@@ -18,13 +18,11 @@ describe("CLI commands", () => {
   });
 
   beforeEach(() => {
-    // Réinitialise process.argv avant chaque test
     process.argv = ["ts-node", "index.ts"];
     jest.clearAllMocks();
   });
 
   afterAll(() => {
-    // Restaure process.argv après tous les tests
     process.argv = originalArgv;
   });
 
