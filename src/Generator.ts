@@ -29,6 +29,18 @@ const ensureDirectoryExists = (dir: string): void => {
     }
 };
 
+
+/**
+ * Ensures that the file does not exist.
+ */
+const ensureFileExists = (filePath: string): void => {
+    if (fs.existsSync(filePath)) {
+        throw new Error(`File already exists: ${filePath}`);
+    }
+}
+
+const ensureReactInstalled = (): void => {
+
 /**
  * Writes the component to a file.
  */
@@ -45,6 +57,7 @@ export const writeComponentFile = (
         ensureDirectoryExists(componentsDir);
 
         const filePath = !isTypescript ? path.join(componentsDir, `${name}.jsx`) : path.join(componentsDir, `${name}.tsx`);
+        ensureFileExists(filePath);
         fs.writeFileSync(filePath, componentCode);
         console.log(`✅ Component ${name} of type ${type} generated at ${filePath}`);
         if(isTypescript){
