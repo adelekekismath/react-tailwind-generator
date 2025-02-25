@@ -9,6 +9,8 @@ Save time by automatically creating buttons, cards, modals, and more, with custo
 
 ## 📦 Installation
 
+Install the package globally using npm or yarn:
+
 ```sh
 npm install -g react-tailwind-generator
 ```
@@ -22,78 +24,79 @@ yarn global add react-tailwind-generator
 
 
 ## 🚀 Usage
-### 1️⃣ Generate a component via CLI
-You can generate a component via command line:
+### 1️⃣ Generate a Component via CLI
+You can generate a JSX component via command line:
+
+**Generate a JSX Component**
 
 ```sh
-npx react-tailwind-generator generate  <ComponentName> <ComponentType> -c "<TailwindClasses>" "
+npx react-tailwind-generator generate  <ComponentName> <ComponentType> -c "<TailwindClasses>"
 ```
 
-or 
+or using the shorthand:
 
 ```sh
-npx rtg g <ComponentName> <ComponentType> -c "<TailwindClasses>" "
+npx rtg g <ComponentName> <ComponentType> -c "<TailwindClasses>"
 ```
 <br>
 
-🔹 ComponentName: The name of the component you want to create. Ex: CloseButton, InfoCard, etc. <br>
-🔹 ComponentType: The type of component you want to create. <br><br>
+**Generate a TypeScript (TSX) Component** <br>
+
+Add the -t flag to generate a TypeScript component:
+
+```sh
+npx react-tailwind-generator generate  <ComponentName> <ComponentType> -c "<TailwindClasses>" -t
+```
+
+or using the shorthand:
+
+```sh
+npx rtg g <ComponentName> <ComponentType> -c "<TailwindClasses>" -t
+```
+
+
+**Parameters** <br>
+
+
+🔹 ``` <ComponentName> ```:  The name of the component you want to create (e.g., CloseButton, InfoCard) <br>
+🔹 ``` <ComponentType> ``` : The type of component you want to create (see available types below).<br>
+🔹 ``` <TailwindClasses>```  : The Tailwind CSS classes to apply to the component (e.g., "px-4 py-2 bg-blue-500 text-white").
 
  🎨 Available component types are:
 
 | Component type | Description |
 |----------------|-------------|
-| button         | A button with text ,onClick and onBlur event, disabled, aria-label 
-| card           | Styled container to display content |
-| modal          | Modal window with display management |
-| navbar         | Navigation bar with content |
-| footer         | Footer with content |
-| alert         | Alert message with a close button |
-| badge          | Badge with text or number |
-| dropdown       | Dropdown menu with options |
-| input          | Input field with a placeholder |
-<br>
-<br>
-
-🔹 TailwindClasses: The Tailwind CSS classes you want to apply to the component. Ex: "px-4 py-2 bg-blue-500 text-white" <br>
-
-  
-
-
-
-
-Ex: You can generate a button component via command line:
-
-```sh
-npx react-tailwind-generator generate  CloseButton button -c "px-4 py-2 bg-blue-500 text-white"
-```
-or 
-
-```sh
-npx rtg g  CloseButton button -c "px-4 py-2 bg-blue-500 text-white"
-```
-
-👉 This creates a CloseButton.jsx file in ./src/components/ with these defaults props:
- - type
- - text
- - onClick
- - disabled
- - ariaLabel
-
-
+| button         | A button with text, onClick, disabled, etc. |
+| card           | A styled container to display content. |
+| modal          | A modal window with display management. |
+| navbar         | A navigation bar with content. |
+| footer         | A footer with content. |
+| alert         | An alert message with a close button. |
+| badge          | A badge with text or number. |
+| dropdown       | A dropdown menu with options. |
+| input          | An input field with a placeholder. |
 <br>
 <br>
 
 
- ### 2️⃣ Interactive mode (easier 📌)
-You can use an interactive assistant to choose the component type, its name, and its props:
+
+### 2️⃣ Interactive mode (easier 📌)
+Use the interactive mode to guide you through the component creation process:
+
 
 ```sh
 npx react-tailwind-generator interactive
 ```
 
-🔹 The tool will guide you to configure your component without having to write a long command.
+🔹 The tool will prompt you to: <br>
 
+- Enter the component name.
+
+- Choose the component type.
+
+- Specify Tailwind CSS classes or use the default styles.
+
+- Choose whether to generate a TypeScript component.
 
 
 
@@ -133,7 +136,7 @@ export const ButtonComponent = ({ text = '', disabled = false, type='button' , o
 <br>
 
 
-### 2️⃣ Generate a card with a dynamic title
+### 2️⃣ Generate a card 
 
 ```sh
 npx react-tailwind-generator generate  InfoCard card -c "p-4 shadow-md rounded-lg" 
@@ -145,14 +148,15 @@ npx react-tailwind-generator generate  InfoCard card -c "p-4 shadow-md rounded-l
 
 import React from "react";
 
-export const InfoCard = ({ children, style = {}, additionalClass = '', header = null, footer = null }) => {
-  return (
-    <div className={`p-4 shadow-md rounded-lg ${additionalClass}`} style={style}>
-      {header && <div className="card-header">{header}</div>}
-      <div className="card-body">{children}</div>
-      {footer && <div className="card-footer">{footer}</div>}
-    </div>
-  );
+export const InfoCard = ({ header = null, footer = null, title, content }) => {
+    return (
+        <div className="p-4 shadow-md rounded-lg">
+            <h1 className="text-2xl font-bold">{title}</h1>
+            {header && <div className="card-header">{header}</div>}
+            <div className="card-body">{content}</div>
+            {footer && <div className="card-footer">{footer}</div>}
+        </div>
+    );
 };
     
 
@@ -163,10 +167,15 @@ export const InfoCard = ({ children, style = {}, additionalClass = '', header = 
 
 
 ## 🏗 Planned improvements
-🔹 Addition of customizable themes <br>
-🔹 Support for PropTypes or advanced TypeScript <br>
-🔹 Automatic generation of Storybook files <br>
-🔹 Generation of Jest tests to verify components <br>
+Here are some features we’re planning to add:
+
+- **Customizable Themes**: Support for custom themes and color schemes.
+
+- **Advanced TypeScript Support**: Improved TypeScript integration with better type safety.
+
+- **Storybook Integration**: Automatic generation of Storybook files for component documentation.
+
+- **Jest Testing**: Generate Jest tests to verify component functionality.
 
 
 <br>
@@ -175,21 +184,42 @@ export const InfoCard = ({ children, style = {}, additionalClass = '', header = 
 ## 👨‍💻 Contribute
 If you want to improve this project:
 
-Clone the repo
+**Clone the repo**
 ```sh
 git clone https://github.com/adelekekismath/react-tailwind-generator.git
 ```
 
-Install dependencies
+**Install dependencies**
 ```sh
 npm install
 ```
 
+**Make Your Changes**: Add new features, fix bugs, or improve documentation.<br>
+
+**Create a Pull Request**: Submit your changes for review.
+
 
 <br>
 <br>
 
-Make your changes and create a PR 🚀
+## 🙏 Credits
+- Author: Kismath Adeleke
+
+- Repository: [GitHub](https://github.com/adelekekismath/react-tailwind-generator.git) <br>
+
+**Why Use This Tool?**
+
+- **Save Time**: Automate the creation of React components.
+
+- **Consistency**: Ensure consistent styling with Tailwind CSS.
+
+- **Flexibility**: Customize components with props and Tailwind classes.
+
+- **Ease of Use**: Simple CLI and interactive mode for quick setup.
+
+
+**Feedback** <br>
+If you have any feedback or suggestions, please open an issue on GitHub.
 
 
 <br>
