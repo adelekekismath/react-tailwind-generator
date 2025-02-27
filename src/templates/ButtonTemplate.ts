@@ -15,31 +15,32 @@ export class ButtonTemplate extends AbstractComponentTemplate {
 type ButtonType = "button" | "submit" | "reset";
             
 interface ${name}Props {
-  text?: string;
-  disabled?: boolean;
-  type?: ButtonType;
-  onClick?: () => void;
-  ariaLabel?: string;
-  className?: string;
+    text?: string;
+    disabled?: boolean;
+    type?: ButtonType;
+    onClick?: () => void;
+    ariaLabel?: string;
+    className?: string;
 }
 `
             : "";
 
-        
-return `import React from "react";
+
+        return `import React from "react";
 ${propsInterface}
 export const ${name}${isTypeScript ? `: React.FC<${name}Props>` : ""} = ({ ${this.getDefaultProps()} }) => {
-  return (
-    <button
-      className={\`${className}\`}
-      onClick={onClick}
-      type={type}
-      disabled={disabled}
-      aria-label={ariaLabel}
-    >
-      {text}
-    </button>
-  );
+    return (
+        <button
+            className={\`${className}\`}
+            onClick={onClick}
+            type={type}
+            disabled={disabled}
+            aria-label={ariaLabel}
+            role="button"
+        >
+            {text}
+        </button>
+    );
 };
     `;
     }

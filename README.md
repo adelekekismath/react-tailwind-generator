@@ -14,10 +14,6 @@ Install the package globally using npm or yarn:
 ```sh
 npm install -g react-tailwind-generator
 ```
-or 
-```sh
-yarn global add react-tailwind-generator
-```
 
 <br>
 <br>
@@ -25,10 +21,11 @@ yarn global add react-tailwind-generator
 
 ## 🚀 Usage
 ### 1️⃣ Generate a Component via CLI
+
 You can generate a JSX component via command line:
 
 **Generate a JSX Component**
-
+<br>
 ```sh
 npx react-tailwind-generator generate  <ComponentName> <ComponentType> -c "<TailwindClasses>"
 ```
@@ -41,7 +38,7 @@ npx rtg g <ComponentName> <ComponentType> -c "<TailwindClasses>"
 <br>
 
 **Generate a TypeScript (TSX) Component** <br>
-
+<br>
 Add the -t flag to generate a TypeScript component:
 
 ```sh
