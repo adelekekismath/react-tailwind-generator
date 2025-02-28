@@ -9,6 +9,14 @@ import { DropdownTemplate } from "./DropdownTemplate";
 import { BadgeTemplate } from "./BadgeTemplate";
 import { AvatarTemplate } from "./AvatarTemplate";
 import { FooterTemplate } from "./FooterTemplate";
+import { TooltipTemplate } from "./TooltipTemplate";
+import { SidebarTemplate } from "./SidebarTemplate";
+import { SpinnerTemplate } from "./SpinnerTemplate";
+import { BreadcrumbTemplate } from "./BreadcrumbTemplate";
+import { AccordionTemplate } from "./AccordionTemplate";
+import { TabsTemplate } from "./TabsTemplate";
+import { TableTemplate } from "./TableTemplate";
+
 
 export const componentTemplates: Record<string, AbstractComponentTemplate> = {
     button: new ButtonTemplate(),
@@ -20,5 +28,13 @@ export const componentTemplates: Record<string, AbstractComponentTemplate> = {
     dropdown: new DropdownTemplate(),
     badge: new BadgeTemplate(),
     avatar: new AvatarTemplate(),
-    footer: new FooterTemplate()
+    footer: new FooterTemplate(),
+    tooltip: new TooltipTemplate(),
+    sidebar: new SidebarTemplate(),
+    spinner: new SpinnerTemplate(),
+    breadcrumb: new BreadcrumbTemplate(),
+    accordion: new AccordionTemplate(),
+    tabs: new TabsTemplate(),
+    table: new TableTemplate(),
+
 };

@@ -39,15 +39,15 @@ async function ensureTailwindInstalled() {
         ]);
 
         if (install) {
-            console.log("📦 Installing Tailwind CSS...");
+            console.log("\n"+ "📦 Installing Tailwind CSS...");
 
             execSync("npm install -D tailwindcss @tailwindcss/vite", { stdio: "inherit" });
 
             configureTailwindForVite();
 
-            console.log("✅ Tailwind CSS has been installed and configured for Vite!");
+            console.log("\n"+"✅ Tailwind CSS has been installed and configured for Vite!");
         } else {
-            console.log("⚠️ Tailwind CSS is not installed. Some components may not work correctly.");
+            console.log("\n"+"⚠️ Tailwind CSS is not installed. Some components may not work correctly.");
         }
     }
 }
@@ -111,7 +111,7 @@ export default defineConfig({
         );
     }
 
-    console.log("🎉 Tailwind CSS has been configured for Vite!");
+    console.log("\n"+"🎉 Tailwind CSS has been configured for Vite!");
 }
 
 export { ensureTailwindInstalled };

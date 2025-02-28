@@ -8,4 +8,11 @@ export type ComponentType =
   | "footer"
   | "input"
   | "modal"
-  | "navbar";
+  | "navbar"
+  | "tooltip"
+  | "sidebar"
+  | "table"
+  | "spinner"
+  | "breadcrumb"
+  | "accordion"
+  | "tabs";

@@ -1,5 +1,5 @@
 import path from "path";
-import { generateComponentCode } from  "./utils/generateComponentCode";
+import { generateComponentCode } from "./utils/generateComponentCode";
 import { ensureDirectoryExists, ensureFileDoesNotExist, writeFile } from "./utils/fileUtils";
 import { ComponentType } from "./utils/types";
 import { PATHS, MESSAGES } from "./utils/config";
@@ -14,7 +14,7 @@ export const writeComponentFile = (
     isTypescript: boolean,
 ): void => {
     try {
-        console.log(MESSAGES.GENERATING_COMPONENT(name, type));
+        console.log("\n" + MESSAGES.GENERATING_COMPONENT(name, type));
 
         const componentCode = generateComponentCode(type, name, className, isTypescript);
 
@@ -27,14 +27,14 @@ export const writeComponentFile = (
 
         writeFile(filePath, componentCode);
 
-        console.log(MESSAGES.COMPONENT_GENERATED(name, type, filePath));
+        console.log("\n" + MESSAGES.COMPONENT_GENERATED(name, type, filePath));
 
         if (isTypescript) {
-        console.log(MESSAGES.TYPESCRIPT_REMINDER);
+            console.log("\n" + MESSAGES.TYPESCRIPT_REMINDER);
         }
     } catch (error) {
         console.error(
-            MESSAGES.ERROR_GENERATING_COMPONENT(error instanceof Error ? error.message : String(error)),
+            "\n" + MESSAGES.ERROR_GENERATING_COMPONENT(error instanceof Error ? error.message : String(error)),
         );
     }
 };
