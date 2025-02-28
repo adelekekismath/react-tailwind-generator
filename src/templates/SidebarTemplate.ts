@@ -12,8 +12,9 @@ export class SidebarTemplate extends AbstractComponentTemplate {
         const propsInterface = isTypeScript
             ? `
 interface ${name}Props {
-  isOpen?: boolean;
-  onClose?: () => void;
+    isOpen?: boolean;
+    onClose?: () => void;
+    children: React.ReactNode;
 }
 `
             : "";
@@ -26,7 +27,7 @@ export const ${name}${componentType} = ({ ${defaultProps} }) => {
     if (!isOpen) return null;
 
     return (
-        <div className=" fixed inset-0 z-50 flex ${className}} role="dialog" aria-modal="true">
+        <div className="fixed inset-0 z-50 flex ${className}" role="dialog" aria-modal="true">
             <div className="fixed inset-0 bg-black opacity-50" onClick={onClose}></div>
             <div className="relative bg-white w-64 h-full shadow-lg">
                 <button onClick={onClose} className="absolute top-0 right-0 m-4 text-lg font-bold">&times;</button>

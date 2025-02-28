@@ -22,7 +22,7 @@ interface ${name}Props {
 
         return `import React from "react";
 ${propsInterface}
-export const ${name}${componentType} = ( ${defaultProps}) => {
+export const ${name}${componentType} = ( {${defaultProps}}) => {
     const sizeClasses = {
         small: 'w-4 h-4',
         medium: 'w-8 h-8',

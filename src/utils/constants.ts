@@ -6,7 +6,7 @@ export const COMPONENT_TYPES: ComponentType[] = [
 ];
 
 export const DEFAULT_CLASSES: Record<ComponentType, string> = {
-    button: "px-4 py-2 bg-blue-500 text-white rounded",
+    button: "px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded",
     card: "p-6 bg-white shadow-md rounded-lg",
     modal: "bg-white p-6 rounded-lg shadow-lg",
     input: "p-2 border border-gray-300 rounded",
@@ -26,7 +26,7 @@ export const DEFAULT_CLASSES: Record<ComponentType, string> = {
 };
 
 export const DEFAULT_PROPS: Record<ComponentType, string[]> = {
-    button: ["text = ''", "disabled = false", "type = 'button'", "onClick = () => {}", "ariaLabel = ''"],
+    button: ['text = "Button"','disabled = false','type = "button"','onClick = () => {}','ariaLabel','className: propClassName = ""'],
     alert: ["type = 'info'", "message = ''", "onClose = () => {}"],
     badge: ["text = ''", "color = 'blue'", "onClick = () => {}"],
     avatar: ["src = ''", "alt = 'Avatar'", "size = 'md'", "shape = 'circle'"],
@@ -37,7 +37,7 @@ export const DEFAULT_PROPS: Record<ComponentType, string[]> = {
     modal: ["isOpen = false", "onClose = () => {}"],
     navbar: ["logo = ''", "links = []", "leftSection = null", "rightSection = null"],
     tooltip: ["text = ''", "position = 'top'", "isVisible = false"],
-    sidebar: ["isOpen = false", "onClose = () => {}"],
+    sidebar: ["children = null","isOpen = false", "onClose = () => {}"],
     table: ["data = []", "columns = []"],
     spinner: ["size = 'md'", "color = 'blue'"],
     breadcrumb: ["items = []"],

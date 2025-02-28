@@ -26,7 +26,7 @@ ${propsInterface}
 export const ${name}${componentType} = ({ ${defaultProps} }) => {
     const [currentTab, setCurrentTab] = useState(activeTab);
 
-    const handleTabClick = (index: number) => {
+    const handleTabClick = (index ${isTypeScript ? ": number":""}) => {
         setCurrentTab(index);
         if (onTabChange) {
             onTabChange(index);

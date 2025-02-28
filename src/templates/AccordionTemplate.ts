@@ -8,6 +8,7 @@ export class AccordionTemplate extends AbstractComponentTemplate {
     }
 
     generateComponent(name: string, className: string, isTypeScript: boolean): string {
+        const defaultProps = this.getDefaultProps();
         const propsInterface = isTypeScript
             ? `
 interface ${name}Props {
@@ -20,15 +21,15 @@ interface ${name}Props {
 
         return `import React, { useState } from "react";
 ${propsInterface}
-export const ${name}${componentType} = ({ items, className }) => {
-    const [openIndex, setOpenIndex] = useState<number | null>(null);
+export const ${name}${componentType} = ({ ${defaultProps} }) => {
+    const [openIndex, setOpenIndex] = ${isTypeScript ? "useState<number | null>(null)": "useState(null)"} ;
 
-    const handleToggle = (index: number) => {
+    const handleToggle = (index ${isTypeScript ? ": number":""}) => {
         setOpenIndex(openIndex === index ? null : index);
     };
 
     return (
-        <div className={\`w-full bg-white border border-gray-300 rounded ${className}\`}>
+        <div className="w-full bg-white border border-gray-300 ${className}">
             {items.map((item, index) => (
                 <div key={index} className="border-b border-gray-200">
                     <button

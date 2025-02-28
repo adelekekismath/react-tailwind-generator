@@ -21,7 +21,7 @@ interface ${name}Props {
 
         return `import React from "react";
 ${propsInterface}
-export const ${name}${componentType} = (${defaultProps}) => {
+export const ${name}${componentType} = ({${defaultProps}}) => {
     return (
         <nav className={\`flex space-x-2 text-blue-500 ${className}\`} aria-label="Breadcrumb">
             {items.map((item, index) => (
