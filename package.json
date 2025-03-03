@@ -1,6 +1,6 @@
 {
   "name": "react-tailwind-generator",
-  "version": "2.1.22",
+  "version": "2.1.23",
   "main": "dist/index.js",
   "bin": {
     "react-tailwind-generator": "dist/index.js",
@@ -21,9 +21,11 @@
   "license": "MIT",
   "description": "A generator for React components styled with Tailwind CSS using the CLI",
   "devDependencies": {
+    "@tailwindcss/vite": "^4.0.9",
     "@types/jest": "^29.5.14",
     "@types/node": "^22.13.4",
     "@types/react": "^19.0.8",
+    "tailwindcss": "^4.0.9",
     "terser": "^5.39.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.7.3"

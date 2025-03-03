@@ -30,7 +30,7 @@ export const DEFAULT_PROPS: Record<ComponentType, string[]> = {
     alert: ["type = 'info'", "message = ''", "onClose = () => {}"],
     badge: ["text = 'Badge Text'", "color = 'blue'", "onClick = () => {}"],
     avatar: ["src = '#'", "alt = 'Avatar'", "size = 'md'", "shape = 'circle'"],
-    card: ["header = 'Card Header'", "footer = null", "title", "content", "className = ''"],
+    card: ["header = 'Default Header'", "footer = 'Default Footer'", "title = 'Default Title'", "content = 'Default Content'", "className = ''"],
     dropdown: ["options = []", "placeholder = 'Select an option'", "onSelect = () => {}", "className = ''"],
     footer: ["leftSection = null", "rightSection = null", "centerSection = null", "links = []"],
     input: ["placeholder = 'Placeholder'", "type = 'text'", "value = ''", "onChange = () => {}", "onBlur = () => {}"],

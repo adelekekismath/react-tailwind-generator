@@ -70,8 +70,16 @@ npx rtg g <ComponentName> <ComponentType> -c "<TailwindClasses>" -t
 | footer         | A footer with content. |
 | alert         | An alert message with a close button. |
 | badge          | A badge with text or number. |
-| dropdown       | A dropdown menu with options. |
 | input          | An input field with a placeholder. |
+| spinner        | A loading spinner with size and color. |
+| tooltip        | A tooltip with text and position. |
+| avatar         | An avatar image with size and shape. |
+| accordion      | An accordion with sections and content. |
+| breadcrumb     | A breadcrumb trail with links. |
+| dropdown       | A dropdown menu with options. |
+| tabs           | A tabbed interface with content. |
+| table          | A table with rows, columns, and data. |
+
 <br>
 <br>
 
@@ -104,27 +112,38 @@ npx react-tailwind-generator interactive
 ### 1️⃣ Generate a custom button
 
 ```sh
-npx react-tailwind-generator generate  ButtonComponent button -c "px-4 py-2 bg-green-500 text-white" 
+npx react-tailwind-generator generate  Button button -c "px-4 py-2 bg-green-500 text-white" 
 ```
 
-📌 Result in ./src/components/ButtonComponent.jsx:
+📌 Result in ./src/components/Button.jsx:
 
 ```jsx
 import React from "react";
 
-export const ButtonComponent = ({ text = '', disabled = false, type='button' , onClick = () => {}, ariaLabel = '' }) => {
-  return (
-    <button
-        className="px-4 py-2 bg-blue-500 text-white rounded"
-        onClick={onClick}
-        type={type}
-        disabled={disabled}
-        aria-label={ariaLabel}
-    >
-      {text}
-    </button>
-  );
+export const Button = ({ text = "Button", disabled = false, type = "button", onClick = () => {}, ariaLabel, 
+                        className:  propClassName = "" }) => 
+{
+
+    const defaultClassName = propClassName;
+    const classes = `px-4 py-2 bg-green-500 text-white ${disabled 
+                    ? '!bg-gray-400 !cursor-not-allowed' 
+                    : defaultClassName}`.trim();
+
+    return (
+        <button
+            className={classes}
+            onClick={!disabled ? onClick : undefined}
+            type={type}
+            disabled={disabled}
+            aria-label={ariaLabel || text}
+            role="button"
+        >
+            {text}
+        </button>
+    );
 };
+
+
 
 ```
 
@@ -145,16 +164,36 @@ npx react-tailwind-generator generate  InfoCard card -c "p-4 shadow-md rounded-l
 
 import React from "react";
 
-export const InfoCard = ({ header = null, footer = null, title, content }) => {
+export const InfoCard = ({ header = 'Default Header', footer = 'Default Footer', title = 'Default Title', 
+                        content = 'Default Content', className = '' }) => 
+{
     return (
-        <div className="p-4 shadow-md rounded-lg">
-            <h1 className="text-2xl font-bold">{title}</h1>
-            {header && <div className="card-header">{header}</div>}
-            <div className="card-body">{content}</div>
-            {footer && <div className="card-footer">{footer}</div>}
+        <div className={`${className}`}>
+            {header && (
+                <div className="text-lg font-semibold text-gray-700 mb-4">
+                    {header}
+                </div>
+            )}
+
+            {title && (
+                <h1 className="text-2xl font-bold text-gray-900 mb-4">
+                    {title}
+                </h1>
+            )}
+
+            <div className="text-gray-600 mb-4">
+                {content}
+            </div>
+
+            {footer && (
+                <div className="border-t border-gray-200 pt-4 text-sm text-gray-500">
+                    {footer}
+                </div>
+            )}
         </div>
     );
 };
+
     
 
 ```

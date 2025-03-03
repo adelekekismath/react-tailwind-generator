@@ -13,7 +13,7 @@ export class CardTemplate extends AbstractComponentTemplate {
 interface ${name}Props {
     header?: React.ReactNode;
     footer?: React.ReactNode;
-    title: string;
+    title?: string;
     content: React.ReactNode;
     className?: string;
 }
@@ -22,20 +22,35 @@ interface ${name}Props {
 
     const componentType = isTypeScript ? `: React.FC<${name}Props>` : "";
 
-    
-return `import React from "react";
+    return `import React from "react";
 ${propsInterface}
 export const ${name}${componentType} = ({ ${defaultProps} }) => {
-    const cardClass = className || \`${className}\` ;
     return (
-        <div className={cardClass}>
-            <h1 className="text-2xl font-bold">{title}</h1>
-            {header && <div className="card-header">{header}</div>}
-            <div className="card-body">{content}</div>
-            {footer && <div className="card-footer">{footer}</div>}
+        <div className={\`\${className}\`}>
+            {header && (
+                <div className="text-lg font-semibold text-gray-700 mb-4">
+                    {header}
+                </div>
+            )}
+
+            {title && (
+                <h1 className="text-2xl font-bold text-gray-900 mb-4">
+                    {title}
+                </h1>
+            )}
+
+            <div className="text-gray-600 mb-4">
+                {content}
+            </div>
+
+            {footer && (
+                <div className="border-t border-gray-200 pt-4 text-sm text-gray-500">
+                    {footer}
+                </div>
+            )}
         </div>
     );
 };
-    `;
+`;
   }
 }
