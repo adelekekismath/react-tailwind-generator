@@ -13,10 +13,8 @@ export const ensureDirectoryExists = (dir: string): void => {
 /**
  * Ensures that the file does not exist.
  */
-export const ensureFileDoesNotExist = (filePath: string): void => {
-  if (fs.existsSync(filePath)) {
-    throw new Error(MESSAGES.FILE_EXISTS_ERROR(filePath));
-  }
+export const ensureFileDoesNotExist = (filePath: string): boolean => {
+    return !fs.existsSync(filePath)
 };
 
 /**

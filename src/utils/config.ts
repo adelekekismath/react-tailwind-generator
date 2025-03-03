@@ -22,4 +22,7 @@ export const MESSAGES = {
 
     UNKNOWN_COMPONENT_TYPE: (type: string) => 
         `Unknown component type: ${type}`,
+
+    COMPONENT_NOT_OVERWRITTEN: (name: string, type: string, filePath: string) => 
+        `❌ Component ${name} of type ${type} not overwritten at ${filePath}`,
 };

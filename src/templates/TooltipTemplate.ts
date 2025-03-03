@@ -2,27 +2,32 @@ import { ComponentType } from "../utils/types";
 import { AbstractComponentTemplate } from "./AbstractComponentTemplate";
 
 export class TooltipTemplate extends AbstractComponentTemplate {
+  getComponentType(): ComponentType {
+    return "tooltip";
+  }
 
-    getComponentType(): ComponentType {
-        return "tooltip";
-    }
-
-    generateComponent(name: string, className: string, isTypeScript: boolean): string {
-        const defaultProps = this.getDefaultProps();
-        const propsInterface = isTypeScript
-            ? `
+  generateComponent(name: string, className: string, isTypeScript: boolean): string {
+    const defaultProps = this.getDefaultProps();
+    const propsInterface = isTypeScript
+      ? `
 interface ${name}Props {
-  text?: string;
-  position?: 'top' | 'right' | 'bottom' | 'left';
-  isVisible?: boolean;
+    text: string;
+    position: 'top' | 'right' | 'bottom' | 'left';
+    isVisible: boolean;
+    backgroundColor?: string; 
+    textColor?: string; 
+    pointerColor?: string; 
+    max-width?: string;
+}
 `
-            : "";
+      : "";
 
-        const componentType = isTypeScript ? `: React.FC<${name}Props>` : "";
+    const componentType = isTypeScript ? `: React.FC<${name}Props>` : "";
 
-        return `import React from "react";
+    return `import React, { useEffect, useState } from "react";
 ${propsInterface}
-export const ${name}${componentType} = ({ ${defaultProps} }) => {
+export const ${name}${componentType} = ({ ${defaultProps}}) => {
+
     if (!isVisible) return null;
 
     const positionClasses = {
@@ -32,12 +37,31 @@ export const ${name}${componentType} = ({ ${defaultProps} }) => {
         left: "right-full top-1/2 transform -translate-y-1/2 mr-2",
     };
 
+    const tooltipPosition = positionClasses[position] || positionClasses.top;
+
     return (
-        <div className={\`absolute \${positionClasses[position]} ${className} p-2 bg-black text-white rounded\`} role="tooltip">
+        <div
+            className={\`absolute \${tooltipPosition} ${className} \${backgroundColor} 
+                        \${textColor} rounded text-sm shadow-lg p-2
+                        \${maxWidth} whitespace-nowrap overflow-hidden text-ellipsis \`}
+            role="tooltip"
+            aria-hidden={!!isVisible} 
+        >
             {text}
+            <div
+                className={\`absolute w-2 h-2 \${pointerColor} transform rotate-45 \${
+                position === "top"
+                    ? "bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2"
+                    : position === "right"
+                    ? "left-0 top-1/2 -translate-x-1/2 -translate-y-1/2"
+                    : position === "bottom"
+                    ? "top-0 left-1/2 -translate-x-1/2 -translate-y-1/2"
+                    : "right-0 top-1/2 translate-x-1/2 -translate-y-1/2"
+                }\`}
+            />
         </div>
     );
 };
-    `;
-    }
+`;
+  }
 }
