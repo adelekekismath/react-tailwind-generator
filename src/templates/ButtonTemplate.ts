@@ -19,18 +19,23 @@ interface ${name}Props {
     type?: ButtonType;
     onClick?: () => void;
     ariaLabel?: string;
-    className: propClassName = "",
+    className: string;
 }
 `
             : "";
 
         return `import React from "react";
 ${propsInterface}
-export const ${name}${isTypeScript ? `: React.FC<${name}Props>` : ""} = ({ ${defaultProps}} ${isTypeScript ? `: ${name}Props` : ""}) => {
-    const finalClassName = propClassName || "${className}";
+export const ${name}${isTypeScript ? `: React.FC<${name}Props>` : ""} = ({ ${defaultProps} }) => {
+
+    const defaultClassName = propClassName;
+    const classes = \`${className} \${disabled 
+                    ? '!bg-gray-400 !cursor-not-allowed' 
+                    : defaultClassName}\`.trim();
+
     return (
         <button
-            className={\` \${disabled ? 'bg-gray-400 cursor-not-allowed' : ''} \${finalClassName} \`}
+            className={classes}
             onClick={!disabled ? onClick : undefined}
             type={type}
             disabled={disabled}
