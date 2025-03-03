@@ -12,7 +12,7 @@ export class SpinnerTemplate extends AbstractComponentTemplate {
         const propsInterface = isTypeScript
             ? `
 interface ${name}Props {
-  size?: 'small' | 'medium' | 'large';
+  size?: 'sm' | 'md' | 'lg';
   color?: string;
 }
 `
@@ -22,16 +22,16 @@ interface ${name}Props {
 
         return `import React from "react";
 ${propsInterface}
-export const ${name}${componentType} = ( {${defaultProps}}) => {
+export const ${name}${componentType} = ({ ${defaultProps} }) => {
     const sizeClasses = {
-        small: 'w-4 h-4',
-        medium: 'w-8 h-8',
-        large: 'w-16 h-16',
+        sm: 'w-4 h-4',
+        md: 'w-8 h-8',
+        lg: 'w-16 h-16',
     };
 
     return (
         <div
-            className={\`\${sizeClasses[size]} border-4 border-\${color}-500 border-t-transparent rounded-full animate-spin ${className}\`}
+            className={\`\${sizeClasses[size]} border-4 border-\${color}-500 ${className}\`}
             role="status"
             aria-label="Loading"
         >

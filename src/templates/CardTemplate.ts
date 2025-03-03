@@ -15,6 +15,7 @@ interface ${name}Props {
     footer?: React.ReactNode;
     title: string;
     content: React.ReactNode;
+    className?: string;
 }
 `
       : "";
@@ -25,8 +26,9 @@ interface ${name}Props {
 return `import React from "react";
 ${propsInterface}
 export const ${name}${componentType} = ({ ${defaultProps} }) => {
+    const cardClass = className || \`${className}\` ;
     return (
-        <div className="${className}">
+        <div className={cardClass}>
             <h1 className="text-2xl font-bold">{title}</h1>
             {header && <div className="card-header">{header}</div>}
             <div className="card-body">{content}</div>
