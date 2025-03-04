@@ -1,3 +1,6 @@
+[![Sponsor on GitHub](https://img.shields.io/github/sponsors/adelekekismath?color=ff69b4&label=Sponsor%20Me&style=flat)](https://github.com/sponsors/adelekekismath)
+
+
 # 🎨 React Tailwind Component Generator  
 
 🚀 A generator for React components styled with Tailwind CSS.
@@ -213,6 +216,14 @@ Here are some features we’re planning to add:
 
 - **Jest Testing**: Generate Jest tests to verify component functionality.
 
+
+<br>
+<br>
+
+## 💖 Support & Sponsoring
+
+If this project helps you, you can support me via [GitHub Sponsors](https://github.com/sponsors/adelekekismath).  
+Your support helps me to continue developing and improving this tool. 🚀
 
 <br>
 <br>

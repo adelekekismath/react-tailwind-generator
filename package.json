@@ -1,6 +1,6 @@
 {
   "name": "react-tailwind-generator",
-  "version": "2.1.26",
+  "version": "2.1.31",
   "main": "dist/index.js",
   "bin": {
     "react-tailwind-generator": "dist/index.js",
@@ -31,9 +31,14 @@
     "typescript": "^5.7.3"
   },
   "dependencies": {
+    "clsx": "^2.1.1",
     "commander": "^13.1.0",
     "inquirer": "^12.4.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
+  },
+  "funding": {
+    "type": "github",
+    "url": "https://github.com/sponsors/adelekekismath"
   }
 }

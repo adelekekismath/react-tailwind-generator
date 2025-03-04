@@ -12,7 +12,7 @@ export const DEFAULT_CLASSES: Record<ComponentType, string> = {
     input: "p-2 border border-gray-300 rounded",
     navbar: "p-4 bg-gray-800 text-white",
     alert: "rounded max-w-md",
-    dropdown: "p-2 bg-white border border-gray-300 rounded",
+    dropdown: "max-w-md",
     badge: "px-2 py-1 rounded-full",
     avatar: "w-12 h-12 rounded-full",
     footer: "p-4 bg-gray-800 text-white",

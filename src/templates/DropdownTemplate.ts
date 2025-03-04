@@ -106,15 +106,15 @@ export const ${name}${componentType} = ({
                         <div
                             key={index}
                             onClick={() => handleSelect(option.value)}
-                            className={\`p-3 hover:bg-gray-100 cursor-pointer flex items-center \${multiSelect && selectedValue.includes(option.value) ? "bg-blue-50" : ""}\`}
+                            className={\`p-3 hover:bg-gray-100 cursor-pointer flex items-center \${multiSelect && Array.isArray(selectedValue) && selectedValue.includes(option.value) ? "bg-blue-50" : ""}\`}
                             role="option"
-                            aria-selected={selectedValue.includes(option.value)}
+                            aria-selected={Array.isArray(selectedValue) && selectedValue.includes(option.value)}
                         >
                             {option.icon && (
                                 <span className="mr-2 text-gray-500">{option.icon}</span>
                             )}
                             <span>{option.label}</span>
-                            {multiSelect && selectedValue.includes(option.value) && (
+                            {multiSelect && Array.isArray(selectedValue) && selectedValue.includes(option.value) && (
                                 <svg
                                     className="w-4 h-4 ml-auto text-blue-500"
                                     fill="none"

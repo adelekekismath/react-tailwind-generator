@@ -8,26 +8,40 @@ export class InputTemplate extends AbstractComponentTemplate {
 
   protected generateComponent(name: string, className: string, isTypeScript: boolean): string {
     const defaultProps = this.getDefaultProps();
+    
     const propsInterface = isTypeScript
       ? `
+import React, { forwardRef } from "react";
+import clsx from "clsx";
+
+type InputType = "text" | "email" | "password" | "number" | "tel" | "search";
+
 interface ${name}Props {
     placeholder?: string;
-    type?: string;
+    type?: InputType;
     value?: string;
     onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
     onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void;
+    className?: string;
 }
 `
-      : "";
+      : `import React, { forwardRef } from "react";
+import clsx from "clsx";`;
 
-    const componentType = isTypeScript ? `: React.FC<${name}Props>` : "";
+    return `${propsInterface}
 
-return `import React from "react";
-${propsInterface}
-export const ${name}${componentType} = ({ ${defaultProps} }) => {
+export const ${name} = ${isTypeScript ? `forwardRef<HTMLInputElement, ${name}Props>` : "forwardRef"}(({ placeholder = "", 
+    type = "text", 
+    value, 
+    onChange, 
+    onBlur, 
+    className = "" }, 
+    ref) => 
+{
     return (
         <input
-            className="${className}"
+            ref={ref}
+            className={clsx("px-3 py-2 border rounded focus:outline-none focus:ring", className)}
             placeholder={placeholder}
             type={type}
             value={value}
@@ -35,7 +49,8 @@ export const ${name}${componentType} = ({ ${defaultProps} }) => {
             onBlur={onBlur}
         />
     );
-};
+  }
+);
     `;
   }
 }
