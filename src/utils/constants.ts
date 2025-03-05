@@ -25,22 +25,3 @@ export const DEFAULT_CLASSES: Record<ComponentType, string> = {
     tabs: "flex space-x-4 border-b border-gray-300"
 };
 
-export const DEFAULT_PROPS: Record<ComponentType, string[]> = {
-    button: ['text = "Button"','disabled = false','type = "button"','onClick = () => {}','ariaLabel','className: propClassName = ""'],
-    alert: ["type = 'info'", "message = ''", "onClose = () => {}"],
-    badge: ["text = 'Badge Text'", "color = 'blue'", "onClick = () => {}"],
-    avatar: ["src = '#'", "alt = 'Avatar'", "size = 'md'", "shape = 'circle'"],
-    card: ["header = 'Default Header'", "footer = 'Default Footer'", "title = 'Default Title'", "content = 'Default Content'", "className : propClassName = ''", ],
-    dropdown: ["options = []", "placeholder = 'Select an option'", "onSelect = () => {}", "className = ''"],
-    footer: ["leftSection = null", "rightSection = null", "centerSection = null", "links = []"],
-    input: ["placeholder = 'Placeholder'", "type = 'text'", "value = ''", "onChange = () => {}", "onBlur = () => {}"],
-    modal: ["isOpen = false", "onClose = () => {}"],
-    navbar: ["logo = ''", "links = []", "leftSection = null", "rightSection = null"],
-    tooltip: ["text = ''", "position = 'top'", "isVisible = false", "backgroundColor = 'bg-black'", "textColor = 'text-white'", "pointerColor = 'bg-black'", "maxWidth = 'max-w-xs'" ],
-    sidebar: ["children = null","isOpen = false", "onClose = () => {}"],
-    table: ["data = []"],
-    spinner: ["size = 'md'", "color = 'blue'"],
-    breadcrumb: ["items = []"],
-    accordion: ["items = []"],
-    tabs: ["tabs = []", "activeTab = 0", "onTabChange = () => {}"]
-};

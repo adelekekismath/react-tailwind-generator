@@ -7,7 +7,7 @@ export class FooterTemplate extends AbstractComponentTemplate {
   }
 
   protected generateComponent(name: string, className: string, isTypeScript: boolean): string {
-    const defaultProps = this.getDefaultProps();
+     
     const propsInterface = isTypeScript
       ? `
 interface ${name}Props {
@@ -24,7 +24,12 @@ interface ${name}Props {
 
 return `import React from "react";
 ${propsInterface}
-export const ${name}${componentType} = ({  ${defaultProps} }) => {
+export const ${name}${componentType} = ({
+    leftSection = null, 
+    rightSection = null, 
+    centerSection = null, 
+    links = []
+}) => {
     return (
         <footer className="${className}">
             <div className="container mx-auto flex justify-between items-center">

@@ -7,7 +7,7 @@ export class TooltipTemplate extends AbstractComponentTemplate {
   }
 
   generateComponent(name: string, className: string, isTypeScript: boolean): string {
-    const defaultProps = this.getDefaultProps();
+     
     const propsInterface = isTypeScript
       ? `
 interface ${name}Props {
@@ -26,7 +26,15 @@ interface ${name}Props {
 
     return `import React from "react";
 ${propsInterface}
-export const ${name}${componentType} = ({ ${defaultProps}}) => {
+export const ${name}${componentType} = ({
+    text = '',
+    position = 'top',
+    isVisible = false,
+    backgroundColor = 'bg-black',
+    textColor = 'text-white',
+    pointerColor = 'bg-black',
+    maxWidth = 'max-w-xs'
+}) => {
 
     if (!isVisible) return null;
 

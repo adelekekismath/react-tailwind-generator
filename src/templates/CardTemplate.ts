@@ -7,7 +7,6 @@ export class CardTemplate extends AbstractComponentTemplate {
   }
 
   protected generateComponent(name: string, className:  string, isTypeScript: boolean): string {
-    const defaultProps = this.getDefaultProps();
     const propsInterface = isTypeScript
       ? `
 interface ${name}Props {
@@ -24,7 +23,13 @@ interface ${name}Props {
 
     return `import React from "react";
 ${propsInterface}
-export const ${name}${componentType} = ({ ${defaultProps} }) => {
+export const ${name}${componentType} = ({ 
+    header = 'Default Header',
+    footer = 'Default Footer',
+    title = 'Default Title', 
+    content = 'Default Content', 
+    className : propClassName = '', 
+}) => {
 
     const defaultClassName = propClassName;
     const classes = "${className}" || defaultClassName;

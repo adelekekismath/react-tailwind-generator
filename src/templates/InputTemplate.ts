@@ -7,7 +7,7 @@ export class InputTemplate extends AbstractComponentTemplate {
   }
 
   protected generateComponent(name: string, className: string, isTypeScript: boolean): string {
-    const defaultProps = this.getDefaultProps();
+     
     
     const propsInterface = isTypeScript
       ? `
@@ -30,14 +30,15 @@ import clsx from "clsx";`;
 
     return `${propsInterface}
 
-export const ${name} = ${isTypeScript ? `forwardRef<HTMLInputElement, ${name}Props>` : "forwardRef"}(({ placeholder = "", 
+export const ${name} = ${isTypeScript ? `forwardRef<HTMLInputElement, ${name}Props>` : "forwardRef"}(({ 
+    placeholder = "", 
     type = "text", 
     value, 
     onChange, 
     onBlur, 
-    className = "" }, 
-    ref) => 
-{
+    className = "" 
+}, ref
+) => {
     return (
         <input
             ref={ref}

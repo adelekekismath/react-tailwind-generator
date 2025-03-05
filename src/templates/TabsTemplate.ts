@@ -8,7 +8,7 @@ export class TabsTemplate extends AbstractComponentTemplate {
     }
 
     generateComponent(name: string, className: string, isTypeScript: boolean): string {
-        const defaultProps = this.getDefaultProps();
+         
         const propsInterface = isTypeScript
             ? `
 interface ${name}Props {
@@ -23,7 +23,11 @@ interface ${name}Props {
 
         return `import React, { useState } from "react";
 ${propsInterface}
-export const ${name}${componentType} = ({ ${defaultProps} }) => {
+export const ${name}${componentType} = ({
+    tabs,
+    activeTab = 0,
+    onTabChange
+}) => {
     const [currentTab, setCurrentTab] = useState(activeTab);
 
     const handleTabClick = (index ${isTypeScript ? ": number":""}) => {

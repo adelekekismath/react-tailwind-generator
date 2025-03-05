@@ -1,9 +1,9 @@
-[![Sponsor on GitHub](https://img.shields.io/github/sponsors/adelekekismath?color=ff69b4&label=Sponsor%20Me&style=flat)](https://github.com/sponsors/adelekekismath)
+
 
 
 # 🎨 React Tailwind Component Generator  
 
-🚀 A generator for React components styled with Tailwind CSS.
+🚀 A generator f    or React components styled with Tailwind CSS.
 Save time by automatically creating buttons, cards, modals, and more, with customizable styles and props.
 
 

@@ -8,7 +8,7 @@ export class SpinnerTemplate extends AbstractComponentTemplate {
     }
 
     generateComponent(name: string, className: string, isTypeScript: boolean): string {
-        const defaultProps = this.getDefaultProps();
+         
         const propsInterface = isTypeScript
             ? `
 interface ${name}Props {
@@ -22,7 +22,10 @@ interface ${name}Props {
 
         return `import React from "react";
 ${propsInterface}
-export const ${name}${componentType} = ({ ${defaultProps} }) => {
+export const ${name}${componentType} = ({
+    size = 'md',
+    color = 'blue',
+}) => {
     const sizeClasses = {
         sm: 'w-4 h-4',
         md: 'w-8 h-8',

@@ -7,3 +7,6 @@ tests
 README.md
 tsconfig.json
 jest.config.js
+jest.setup.js
+package-lock.json
+*.config.js

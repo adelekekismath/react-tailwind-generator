@@ -19,9 +19,9 @@ export class AlertTemplate extends AbstractComponentTemplate {
         const propsInterface = isTypeScript
             ? `
 interface ${name}Props {
-  type?: 'info' | 'success' | 'warning' | 'error';
-  message?: string;
-  onClose?: () => void;
+    type?: 'info' | 'success' | 'warning' | 'error';
+    message?: string;
+    onClose?: () => void;
 }
 `
             : "";
@@ -31,7 +31,11 @@ interface ${name}Props {
          
 return `import React , { useState } from "react";
 ${propsInterface}
-export const ${name}${componentType} = ({ ${this.getDefaultProps()} }) => {
+export const ${name}${componentType} = ({
+    type = 'info' , 
+    message = '' , 
+    onClose = () => {}
+}) => {
     const [visible, setVisible] = useState(true);
 
     const handleClose = () => {

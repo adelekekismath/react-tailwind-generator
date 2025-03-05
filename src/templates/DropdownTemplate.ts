@@ -33,6 +33,7 @@ export const ${name}${componentType} = ({
     searchable = false,
     multiSelect = false,
 }) => {
+ 
     const [isOpen, setIsOpen] = useState(false);
     const [selectedValue, setSelectedValue] = useState(multiSelect ? [] : "");
     const [searchQuery, setSearchQuery] = useState("");

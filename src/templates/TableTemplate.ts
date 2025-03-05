@@ -7,7 +7,7 @@ export class TableTemplate extends AbstractComponentTemplate {
   }
 
   generateComponent(name: string, className: string, isTypeScript: boolean): string {
-    const defaultProps = this.getDefaultProps();
+     
     const propsInterface = isTypeScript
       ? `
 interface ${name}Props {
@@ -20,8 +20,8 @@ interface ${name}Props {
 
     return `import React from "react";
 ${propsInterface}
-export const ${name}${componentType} = ({ ${defaultProps} }) => {
-    // Déduire les colonnes à partir des clés du premier élément de data
+export const ${name}${componentType} = ({data = []}) => {
+
     const columns = data.length > 0 ? Object.keys(data[0]) : [];
 
     return (

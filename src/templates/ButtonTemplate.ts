@@ -8,7 +8,6 @@ export class ButtonTemplate extends AbstractComponentTemplate {
     }
 
     generateComponent(name: string, className: string, isTypeScript: boolean): string {
-        const defaultProps = this.getDefaultProps();
         const propsInterface = isTypeScript
             ? `
 type ButtonType = "button" | "submit" | "reset";
@@ -26,7 +25,14 @@ interface ${name}Props {
 
         return `import React from "react";
 ${propsInterface}
-export const ${name}${isTypeScript ? `: React.FC<${name}Props>` : ""} = ({ ${defaultProps} }) => {
+export const ${name}${isTypeScript ? `: React.FC<${name}Props>` : ""} = ({ 
+    text = "Button",
+    disabled = false,
+    type = "button",
+    onClick = () => {},
+    ariaLabel,
+    className: propClassName = ""
+}) => {
 
     const defaultClassName = propClassName;
     const classes = \`${className} \${disabled 

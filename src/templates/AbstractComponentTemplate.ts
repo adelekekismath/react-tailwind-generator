@@ -1,4 +1,3 @@
-import { DEFAULT_PROPS } from "../utils/constants";
 import { ComponentType } from "../utils/types";
 
 export abstract class AbstractComponentTemplate {
@@ -13,11 +12,6 @@ export abstract class AbstractComponentTemplate {
   }
 
   protected abstract getComponentType(): ComponentType;
-
-
-  protected getDefaultProps(): string {
-    return DEFAULT_PROPS[this.getComponentType()].join(", ");
-  }
 
   /**
    * Génère un composant React en TypeScript.

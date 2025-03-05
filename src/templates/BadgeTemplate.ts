@@ -22,7 +22,12 @@ interface ${name}Props {
     
 return `import React from "react";
 ${propsInterface}
-export const ${name}${isTypeScript ? `: React.FC<${name}Props>` : ""} = ({ ${this.getDefaultProps()} }) => {
+export const ${name}${isTypeScript ? `: React.FC<${name}Props>` : ""} = ({ 
+    text = 'Badge Text',
+    color = 'blue',
+    onClick = () => {}
+}) => {
+
     const colorClass = {
         blue: "bg-blue-100 text-blue-800",
         green: "bg-green-100 text-green-800",
@@ -34,14 +39,14 @@ export const ${name}${isTypeScript ? `: React.FC<${name}Props>` : ""} = ({ ${thi
         gray: "bg-gray-100 text-gray-800"
     }[color];
 
-  return (
-    <span
-        onClick={onClick}
-        className={\`${className} text-xs font-medium me-2 px-2.5 py-0.5 rounded-sm  \${colorClass}\`}
-    >
-      {text}
-    </span>
-  );
+    return (
+        <span
+            onClick={onClick}
+            className={\`${className} text-xs font-medium me-2 px-2.5 py-0.5 rounded-sm  \${colorClass}\`}
+        >
+        {text}
+        </span>
+    );
 };
     `;
   }
