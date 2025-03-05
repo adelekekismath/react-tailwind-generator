@@ -56,7 +56,7 @@ export const ${name}${componentType} = ({
             aria-labelledby="modal-title"
         >
             <div
-                className={\`bg-white rounded-lg shadow-lg relative \${className}\`}
+                className={\`bg-white rounded-lg shadow-lg relative ${className}\`}
                 onClick={(e) => e.stopPropagation()} 
             >
                 <button

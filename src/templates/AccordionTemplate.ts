@@ -22,7 +22,12 @@ interface ${name}Props {
 
     return `import React, { useState } from "react";
 ${propsInterface}
-export const ${name}${componentType} = ({items = []}) => {
+export const ${name}${componentType} = ({
+    items = [],
+    iconOpen,
+    iconClosed,
+
+}) => {
     const [openIndex, setOpenIndex] = ${isTypeScript ? "useState<number | null>(null)" : "useState(null)"};
 
     const handleToggle = (index${isTypeScript ? ": number" : ""}) => {
