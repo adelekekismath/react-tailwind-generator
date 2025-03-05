@@ -22,7 +22,7 @@ interface ${name}Props {
 
     return `import React, { useState } from "react";
 ${propsInterface}
-export const ${name}${componentType} = ({items = []} }) => {
+export const ${name}${componentType} = ({items = []}) => {
     const [openIndex, setOpenIndex] = ${isTypeScript ? "useState<number | null>(null)" : "useState(null)"};
 
     const handleToggle = (index${isTypeScript ? ": number" : ""}) => {
@@ -40,7 +40,7 @@ export const ${name}${componentType} = ({items = []} }) => {
                         aria-controls={\`accordion-content-\${index}\`}
                     >
                         <span>{item.title}</span>
-                        <span className="transform transition-transform duration-200 {openIndex === index ? "rotate-180" : ""}">
+                        <span className="transform transition-transform duration-200 {openIndex === index ? 'rotate-180' : ''}">
                             {openIndex === index ? iconOpen || "▼" : iconClosed || "►"}
                         </span>
                     </button>

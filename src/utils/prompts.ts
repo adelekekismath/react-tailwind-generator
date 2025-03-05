@@ -1,5 +1,5 @@
 import inquirer from "inquirer";
-import { COMPONENT_TYPES, DEFAULT_CLASSES, DEFAULT_PROPS } from "./constants";
+import { COMPONENT_TYPES, DEFAULT_CLASSES } from "./constants";
 import { ComponentType } from "./types";
 
 
