@@ -23,7 +23,7 @@ interface ${name}Props {
 
     const componentType = isTypeScript ? `: React.FC<${name}Props>` : "";
 
-    return `import React, { useState } from "react";
+    return `import React from "react";
 ${propsInterface}
 
 export const ${name}${componentType} = ({

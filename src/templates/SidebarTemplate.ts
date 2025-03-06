@@ -61,7 +61,7 @@ export const ${name}${componentType} = ({
                     position === "left" ? "-translate-x-full" : "translate-x-full"
                 } \${
                     isOpen ? "translate-x-0" : position === "left" ? "-translate-x-full" : "translate-x-full"
-                } \${className}\`}
+                } ${className}\`}
                 onClick={(e) => e.stopPropagation()}
             >
                 <button
