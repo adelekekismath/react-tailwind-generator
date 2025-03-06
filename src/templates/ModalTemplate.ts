@@ -28,7 +28,7 @@ export const ${name}${componentType} = ({
     isOpen = false,
     onClose = () => {},
     children,
-    overlayClassName = "bg-black bg-opacity-50",
+    overlayClassName = "bg-black/50",
     closeOnOverlayClick = true,
 }) => {
     useEffect(() => {
@@ -61,7 +61,7 @@ export const ${name}${componentType} = ({
             >
                 <button
                     onClick={onClose}
-                    className="absolute top-2 right-2 text-gray-500 hover:text-gray-700 transition-colors duration-200"
+                    className="absolute top-2 right-4 text-2xl text-gray-500 hover:text-gray-700 transition-colors duration-200"
                     aria-label="Close modal"
                 >
                     &times;
