@@ -30,16 +30,8 @@
     "ts-node": "^10.9.2",
     "typescript": "^5.7.3"
   },
-  "peerDependencies": {
-    "node:async_hooks": "*",
-    "node:child_process": "*",
-    "node:events": "*",
-    "node:fs": "*",
-    "node:path": "*",
-    "node:process": "*",
-    "node:readline": "*",
-    "node:tty": "*",
-    "node:util": "*"
+  "engines": {
+    "node": ">=14.0.0"
   },
   "dependencies": {
     "clsx": "^2.1.1",
