@@ -3,7 +3,7 @@
 
 # 🎨 React Tailwind Component Generator  
 
-🚀 A generator f    or React components styled with Tailwind CSS.
+🚀 A generator for React components styled with Tailwind CSS.
 Save time by automatically creating buttons, cards, modals, and more, with customizable styles and props.
 
 
@@ -27,40 +27,48 @@ npm install -g react-tailwind-generator
 
 You can generate a JSX component via command line:
 
-**Generate a JSX Component**
-<br>
+**Generate a JSX or TypeScript (TSX) Component**
+
+You can generate a component via command line using the following syntax:
+
 ```sh
-npx react-tailwind-generator generate  <ComponentName> <ComponentType> -c "<TailwindClasses>"
+npx react-tailwind-generator generate <ComponentName> <ComponentType> [-c "<TailwindClasses>"] [-t] [-p "<Component_Directory>"]
 ```
 
 or using the shorthand:
 
 ```sh
-npx rtg g <ComponentName> <ComponentType> -c "<TailwindClasses>"
+npx rtg g <ComponentName> <ComponentType> [-c "<TailwindClasses>"] [-t] [-p "<Component_Directory>"]
 ```
-<br>
 
-**Generate a TypeScript (TSX) Component** <br>
-<br>
-Add the -t flag to generate a TypeScript component:
+**Parameters**
+
+🔹 `<ComponentName>`: The name of the component you want to create (e.g., CloseButton, InfoCard) <br>
+🔹 `<ComponentType>`: The type of component you want to create (see available types below).<br>
+🔹 `<TailwindClasses>`: The Tailwind CSS classes to apply to the component (e.g., "px-4 py-2 bg-blue-500 text-white").<br>
+🔹 `<Component_Directory>`: The directory where the component will be saved (default is ./src/components).<br>
+🔹 `-t`: Add this flag to generate a TypeScript component.<br>
+
+**Examples**
+
+Generate a JSX Component:
 
 ```sh
-npx react-tailwind-generator generate  <ComponentName> <ComponentType> -c "<TailwindClasses>" -t
+npx react-tailwind-generator generate Button button -c "p-4 bg-green-500 text-white" -p "./src/components/home"
+```
+
+Generate a TypeScript (TSX) Component:
+
+```sh
+npx react-tailwind-generator generate Button button -c "p-4 bg-green-500 text-white" -t -p "./src/components/home"
 ```
 
 or using the shorthand:
 
 ```sh
-npx rtg g <ComponentName> <ComponentType> -c "<TailwindClasses>" -t
+npx rtg g Button button -c "p-4 bg-green-500 text-white" -t -p "./src/components/home"
 ```
 
-
-**Parameters** <br>
-
-
-🔹 ``` <ComponentName> ```:  The name of the component you want to create (e.g., CloseButton, InfoCard) <br>
-🔹 ``` <ComponentType> ``` : The type of component you want to create (see available types below).<br>
-🔹 ``` <TailwindClasses>```  : The Tailwind CSS classes to apply to the component (e.g., "px-4 py-2 bg-blue-500 text-white").
 
  🎨 Available component types are:
 
@@ -104,7 +112,9 @@ npx react-tailwind-generator interactive
 
 - Specify Tailwind CSS classes or use the default styles.
 
-- Choose whether to generate a TypeScript component.
+- Choose whether to generate a TypeScript component or not.
+
+- Enter the directory where the component will be saved (default is ./src/components).
 
 
 
@@ -123,9 +133,14 @@ npx react-tailwind-generator generate  Button button -c "px-4 py-2 bg-green-500 
 ```jsx
 import React from "react";
 
-export const Button = ({ text = "Button", disabled = false, type = "button", onClick = () => {}, ariaLabel, 
-                        className:  propClassName = "" }) => 
-{
+export const Button = ({ 
+    text = "Button",
+    disabled = false,
+    type = "button",
+    onClick = () => {},
+    ariaLabel,
+    className: propClassName = ""
+}) => {
 
     const defaultClassName = propClassName;
     const classes = `px-4 py-2 bg-green-500 text-white ${disabled 
@@ -145,9 +160,6 @@ export const Button = ({ text = "Button", disabled = false, type = "button", onC
         </button>
     );
 };
-
-
-
 ```
 
 
@@ -167,11 +179,19 @@ npx react-tailwind-generator generate  InfoCard card -c "p-4 shadow-md rounded-l
 
 import React from "react";
 
-export const InfoCard = ({ header = 'Default Header', footer = 'Default Footer', title = 'Default Title', 
-                        content = 'Default Content', className = '' }) => 
-{
+export const InfoCard = ({ 
+    header = 'Default Header',
+    footer = 'Default Footer',
+    title = 'Default Title', 
+    content = 'Default Content', 
+    className : propClassName = '', 
+}) => {
+
+    const defaultClassName = propClassName;
+    const classes = "p-4 shadow-md rounded-lg" || defaultClassName;
+
     return (
-        <div className={`${className}`}>
+        <div className={classes}>
             {header && (
                 <div className="text-lg font-semibold text-gray-700 mb-4">
                     {header}
@@ -196,8 +216,6 @@ export const InfoCard = ({ header = 'Default Header', footer = 'Default Footer',
         </div>
     );
 };
-
-    
 
 ```
 <br>
