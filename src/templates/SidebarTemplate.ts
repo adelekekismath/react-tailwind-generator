@@ -29,7 +29,7 @@ export const ${name}${componentType} = ({
     isOpen = false,
     onClose = () => {},
     children,
-    overlayClassName = "bg-black bg-opacity-50",
+    overlayClassName = "bg-black/20",
     closeOnOverlayClick = true,
     position = "left",
 }) => {

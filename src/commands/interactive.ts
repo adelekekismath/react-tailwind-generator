@@ -10,7 +10,7 @@ export const setupInteractiveCommand = (program: Command) => {
         .action(async () => {
             try {
                 const answers = await promptUser();
-                writeComponentFile(answers.type, answers.name, answers.className, answers.isTypescript);
+                writeComponentFile(answers.type, answers.name, answers.className, answers.isTypescript, answers.path);
             } catch (error) {
                 console.error("❌ Error during interactive mode:", error);
             }

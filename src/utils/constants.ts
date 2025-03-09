@@ -25,3 +25,5 @@ export const DEFAULT_CLASSES: Record<ComponentType, string> = {
     tabs: "flex space-x-4 border-b border-gray-300"
 };
 
+export const DEFAULT_PATH = "src/components";
+

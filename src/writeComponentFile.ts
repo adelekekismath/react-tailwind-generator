@@ -13,16 +13,17 @@ export const writeComponentFile = (
     name: string,
     className: string,
     isTypescript: boolean,
+    componentDir: string,
 ): void => {
     try {
         console.log("\n" + MESSAGES.GENERATING_COMPONENT(name, type));
 
         const componentCode = generateComponentCode(type, name, className, isTypescript);
 
-        ensureDirectoryExists(PATHS.COMPONENTS_DIR);
+        ensureDirectoryExists(componentDir);
 
         const fileExtension = isTypescript ? "tsx" : "jsx";
-        const filePath = path.join(PATHS.COMPONENTS_DIR, `${name}.${fileExtension}`);
+        const filePath = path.join(componentDir, `${name}.${fileExtension}`);
 
         if (ensureFileDoesNotExist(filePath)) {
             writeFile(filePath, componentCode);

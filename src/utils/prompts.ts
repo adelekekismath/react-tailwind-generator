@@ -48,6 +48,12 @@ export const promptUser = async () => {
             name: "isTypescript",
             message: "Generate TypeScript code? (default: false): ",
             default: false,
+        },
+        {
+            type: "input",
+            name: "path",
+            message: "Path to generate the component? (default: src/components): ",
+            default: "src/components",
         }
     ]);
 
