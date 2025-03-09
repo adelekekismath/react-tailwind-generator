@@ -3,6 +3,13 @@
 
 # 🎨 React Tailwind Component Generator  
 
+[![npm version](https://img.shields.io/npm/v/react-tailwind-generator.svg)](https://www.npmjs.com/package/react-tailwind-generator)
+[![npm downloads](https://img.shields.io/npm/dt/react-tailwind-generator.svg)](https://www.npmjs.com/package/react-tailwind-generator)
+![Build Status](https://img.shields.io/github/workflow/status/adelekekismath/react-tailwind-generator/Node.js%20CI)
+[![License](https://img.shields.io/npm/l/react-tailwind-generator.svg)](https://github.com/adelekekismath/react-tailwind-generator/blob/main/LICENSE)
+
+
+
 🚀 A generator for React components styled with Tailwind CSS.
 Save time by automatically creating buttons, cards, modals, and more, with customizable styles and props.
 
