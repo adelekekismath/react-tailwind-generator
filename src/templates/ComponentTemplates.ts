@@ -16,6 +16,14 @@ import { BreadcrumbTemplate } from "./BreadcrumbTemplate";
 import { AccordionTemplate } from "./AccordionTemplate";
 import { TabsTemplate } from "./TabsTemplate";
 import { TableTemplate } from "./TableTemplate";
+import { TextareaTemplate } from "./TextareaTemplate";
+import { SelectTemplate } from "./SelectTemplate";
+import { RadioTemplate } from "./RadioTemplate";
+import { CheckboxTemplate } from "./CheckboxTemplate";
+import { LabelTemplate } from "./LabelTemplate";
+import { FormTemplate } from "./FormTemplate";
+
+
 
 
 export const componentTemplates: Record<string, AbstractComponentTemplate> = {
@@ -36,5 +44,10 @@ export const componentTemplates: Record<string, AbstractComponentTemplate> = {
     accordion: new AccordionTemplate(),
     tabs: new TabsTemplate(),
     table: new TableTemplate(),
-
+    textarea: new TextareaTemplate(),
+    select: new SelectTemplate(),
+    radio: new RadioTemplate(),
+    checkbox: new CheckboxTemplate(),
+    label: new LabelTemplate(),
+    form: new FormTemplate()
 };

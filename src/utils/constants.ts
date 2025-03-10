@@ -1,8 +1,8 @@
 import { ComponentType } from "./types";
 
 export const COMPONENT_TYPES: ComponentType[] = [
-    "alert", "avatar", "badge", "button", "card", "dropdown", "footer", "input", "modal", "navbar",
-    "tooltip", "sidebar", "table", "spinner", "breadcrumb", "accordion", "tabs"
+    "alert", "avatar", "badge", "button", "card", "checkbox", "dropdown", "footer", "form", "input", "label", "modal", "navbar","textarea",
+    "radio", "select","sidebar", "table", "tooltip", "spinner", "breadcrumb", "accordion", "tabs"
 ];
 
 export const DEFAULT_CLASSES: Record<ComponentType, string> = {
@@ -22,7 +22,13 @@ export const DEFAULT_CLASSES: Record<ComponentType, string> = {
     spinner: "w-8 h-8 border-4  border-t-transparent rounded-full animate-spin",
     breadcrumb: "flex space-x-2 text-blue-500",
     accordion: "w-full bg-white border border-gray-300 rounded",
-    tabs: "flex space-x-4 border-b border-gray-300"
+    tabs: "flex space-x-4 border-b border-gray-300",
+    textarea: "p-2 border border-gray-300 rounded",
+    select: "p-3 border rounded focus:outline-none focus:ring",
+    checkbox: "form-checkbox h-5 w-5 text-blue-600",
+    radio: "form-radio h-5 w-5 text-blue-600",
+    label: "block text-gray-700",
+    form: "w-full max-w-lg"
 };
 
 export const DEFAULT_PATH = "src/components";

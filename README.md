@@ -88,6 +88,11 @@ npx rtg g Button button -c "p-4 bg-green-500 text-white" -t -p "./src/components
 | alert         | An alert message with a close button. |
 | badge          | A badge with text or number. |
 | input          | An input field with a placeholder. |
+| checkbox       | A checkbox with label and checked state. |
+| radio          | A radio button with label and checked state. |
+| select         | A select dropdown with options. |
+| label          | A label with text and color. |
+| form           | A form with input fields and submit button. |
 | spinner        | A loading spinner with size and color. |
 | tooltip        | A tooltip with text and position. |
 | avatar         | An avatar image with size and shape. |
