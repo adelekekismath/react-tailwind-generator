@@ -20,11 +20,15 @@ import clsx from "clsx";`;
 }`
       : "";
 
+    const forwardRefType = isTypeScript
+      ? `forwardRef<HTMLInputElement, ${name}Props>`
+      : `forwardRef`;
+
     return `${imports}
 
 ${propsInterface}
 
-export const ${name} = forwardRef<HTMLInputElement, ${isTypeScript ? `${name}Props` : "any"}>(
+export const ${name} = ${forwardRefType}(
   ({ checked, onChange, className = "", disabled = false, label }, ref) => {
     return (
       <label className={clsx("flex items-center gap-2 cursor-pointer", { "opacity-50 cursor-not-allowed": disabled })}>

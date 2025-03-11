@@ -38,6 +38,7 @@
     "commander": "^13.1.0",
     "inquirer": "^12.4.1",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "react-tailwind-generator": "^2.2.16"
   }
 }
