@@ -8,12 +8,12 @@ export class SpinnerTemplate extends AbstractComponentTemplate {
     }
 
     generateComponent(name: string, className: string, isTypeScript: boolean): string {
-         
         const propsInterface = isTypeScript
             ? `
 interface ${name}Props {
   size?: 'sm' | 'md' | 'lg';
   color?: string;
+  className?: string;
 }
 `
             : "";
@@ -21,10 +21,12 @@ interface ${name}Props {
         const componentType = isTypeScript ? `: React.FC<${name}Props>` : "";
 
         return `import React from "react";
+import clsx from "clsx";
 ${propsInterface}
 export const ${name}${componentType} = ({
     size = 'md',
     color = 'blue',
+    className = '',
 }) => {
     const sizeClasses = {
         sm: 'w-4 h-4',
@@ -34,7 +36,7 @@ export const ${name}${componentType} = ({
 
     return (
         <div
-            className={\`\${sizeClasses[size]} border-4 border-\${color}-500 ${className}\`}
+            className={clsx(sizeClasses[size], \`border-4 border-\${color}-500\`, className)}
             role="status"
             aria-label="Loading"
         >
