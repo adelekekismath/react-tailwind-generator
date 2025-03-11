@@ -19,7 +19,7 @@ export const DEFAULT_CLASSES: Record<ComponentType, string> = {
     tooltip: "p-2 bg-black text-white rounded",
     sidebar: "w-64 bg-gray-800 text-white h-full",
     table: "w-full bg-white border border-gray-300",
-    spinner: "border-t-transparent rounded-full animate-spin",
+    spinner: "",
     breadcrumb: "flex space-x-2 text-blue-500",
     accordion: "w-full bg-white border border-gray-300 rounded",
     tabs: "flex space-x-4 border-b border-gray-300",
