@@ -7,36 +7,43 @@ export class RadioTemplate extends AbstractComponentTemplate {
   }
 
   protected generateComponent(name: string, className: string, isTypeScript: boolean): string {
-    const propsInterface = isTypeScript
-      ? 
-`import React, { forwardRef } from "react";
-import clsx from "clsx";
+    const imports = `import React, { forwardRef } from "react";
+import clsx from "clsx";`;
 
-interface ${name}Props {
+    const propsInterface = isTypeScript
+      ? `interface ${name}Props {
     checked?: boolean;
     onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
     className?: string;
-}
-`
-      : `import React, { forwardRef } from "react";
-import clsx from "clsx";`;
+    disabled?: boolean;
+    label?: string;
+}`
+      : "";
 
-    return `${propsInterface}
+    return `${imports}
 
-export const ${name} = ${isTypeScript ? `forwardRef<HTMLInputElement, ${name}Props>` : "forwardRef"}(({ 
-    checked, 
-    onChange, 
-    className = "" 
-}, ref
-) => {
+${propsInterface}
+
+export const ${name} = forwardRef<HTMLInputElement, ${isTypeScript ? `${name}Props` : "any"}>(
+  ({ checked, onChange, className = "", disabled = false, label }, ref) => {
     return (
+      <label className={clsx("flex items-center gap-2 cursor-pointer", { "opacity-50 cursor-not-allowed": disabled })}>
         <input
-            ref={ref}
-            type="radio"
-            className={clsx("form-radio h-5 w-5 text-blue-600", className)}
-            checked={checked}
-            onChange={onChange}
+          ref={ref}
+          type="radio"
+          className={clsx(
+            "form-radio h-5 w-5 text-blue-600 transition-all duration-200 ease-in-out",
+            "border-gray-300 focus:ring focus:ring-blue-300 focus:ring-opacity-50",
+            "hover:border-blue-500 focus:outline-none",
+            className
+          )}
+          checked={checked}
+          onChange={onChange}
+          disabled={disabled}
+          aria-checked={checked}
         />
+        {label && <span className="text-gray-800">{label}</span>}
+      </label>
     );
   }
 );`;
