@@ -34,7 +34,7 @@ export const ${name}${componentType} = ({
         lg: 'w-16 h-16',
     };
 
-    classes = clsx(sizeClasses[size], \`border-4 border-\${color}-500 border-t-transparent rounded-full animate-spin \`, className);
+    const classes = clsx(sizeClasses[size], \`border-4 border-\${color}-500 border-t-transparent rounded-full animate-spin \`, className);
 
     return (
         <div
