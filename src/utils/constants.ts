@@ -17,7 +17,7 @@ export const DEFAULT_CLASSES: Record<ComponentType, string> = {
     avatar: "w-12 h-12 rounded-full",
     footer: "p-4 bg-gray-800 text-white",
     tooltip: "p-2 bg-black text-white rounded",
-    sidebar: "w-64 bg-gray-800 text-white h-full",
+    sidebar: "w-64 bg-gray-800  h-full",
     table: "w-full bg-white border border-gray-300",
     spinner: "",
     breadcrumb: "flex space-x-2 text-blue-500",
