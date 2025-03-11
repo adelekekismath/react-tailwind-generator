@@ -27,7 +27,7 @@ export const ${name} = ({
     children, 
     onSubmit, 
     className = "" 
-}: ${isTypeScript ? `${name}Props` : ""}) => {
+} ${isTypeScript ? `: ${name}Props` : ""}) => {
     return (
         <form
             onSubmit={onSubmit}

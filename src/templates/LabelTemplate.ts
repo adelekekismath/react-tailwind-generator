@@ -27,7 +27,7 @@ export const ${name} = ({
     children, 
     htmlFor, 
     className = "" 
-}: ${isTypeScript ? `${name}Props` : ""}) => {
+} ${isTypeScript ? `: ${name}Props` : ""}) => {
     return (
         <label
             htmlFor={htmlFor}
