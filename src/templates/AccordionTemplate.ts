@@ -65,3 +65,7 @@ export const ${name}${componentType} = ({
 `;
   }
 }
+
+const accordionTemplate = new AccordionTemplate();
+
+export const Accordion = accordionTemplate.generateComponent("Accordion", "", false);
