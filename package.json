@@ -2,6 +2,7 @@
   "name": "react-tailwind-generator",
   "version": "2.2.23",
   "main": "dist/index.js",
+  "types": "src/index.d.ts",
   "bin": {
     "react-tailwind-generator": "dist/index.js",
     "rtg": "dist/index.js"
